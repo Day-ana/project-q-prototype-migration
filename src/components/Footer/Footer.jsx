@@ -105,7 +105,7 @@ class Footer extends React.Component {
                 <Button
                   className="btn-icon btn-neutral btn-round btn-simple"
                   color="default"
-                  href="https://dribbble.com/queeeryhq"
+                  href="https://instagram.com/queeeryhq"
                   id="tooltip318450378"
                   target="_blank"
                 >
