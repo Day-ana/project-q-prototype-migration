@@ -49,7 +49,7 @@ const PageHeader = props => {
           <Row>
             <Col>
               <h1 className="h1-seo">Queeery</h1>
-              <h3 className="d-none d-sm-block">A queery for queers.</h3>
+              <h3 className="d-none d-sm-block">A query for queers.</h3>
             </Col>
           </Row>
           <Row>

@@ -14,10 +14,10 @@ export class Events extends Component {
       gridTemplateColumns: "repeat(3, 1fr)",
       gridGap: "1rem",
       // border: "1px solid rgb(255, 1, 151)",
-      padding: "20px 30px",
-      transition: "background 200ms",
-      boxShadow: "-1px -3px 19px #ff019740",
-      borderRadius: "5px"
+      padding: "20px 30px"
+      // transition: "background 200ms",
+      // boxShadow: "-1px -3px 19px #ff019740",
+      // borderRadius: "5px"
     };
 
     if (loading) {

@@ -27,7 +27,7 @@ class EventItem extends Component {
     }
 
     return (
-      <Col>
+      <Col className="q-event-item">
         <Col>
           {" "}
           <small className="d-block primary text-uppercase font-weight-bold mb-4">

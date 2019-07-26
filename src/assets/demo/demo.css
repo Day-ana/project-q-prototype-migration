@@ -1,3 +1,17 @@
+/* //Queeery Custom  */
+
+.q-event-item {
+  transition: background 200ms;
+  border: 1px solid rgba(255, 1, 151, 0.22);
+}
+
+.q-event-item:hover {
+  border-radius: 3px;
+  border: 1px solid rgb(255, 1, 151, 0.5);
+
+  background: #d550d712;
+}
+
 .tim-row {
   margin-bottom: 20px;
 }
@@ -122,7 +136,7 @@
 }
 
 .txt-white {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .txt-gray {
@@ -149,7 +163,7 @@
 
 .logo-container .brand {
   font-size: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 18px;
   float: left;
   margin-left: 10px;
@@ -307,10 +321,10 @@
 .presentation .front .btn,
 .logo-container .logo,
 .logo-container .brand {
-  -webkit-transition: all .2s;
-  -moz-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 #images h4 {
@@ -349,7 +363,7 @@
 }
 
 .navbar-transparent.navbar-small .logo-container .brand {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .navbar-default.navbar-small .logo-container .brand {
@@ -407,7 +421,7 @@
   text-decoration: none;
 }
 
-.section-examples a+a {
+.section-examples a + a {
   margin-top: 30px;
 }
 
@@ -415,8 +429,8 @@
   margin-top: 30px;
 }
 
-.components-page .wrapper>.header,
-.tutorial-page .wrapper>.header {
+.components-page .wrapper > .header,
+.tutorial-page .wrapper > .header {
   height: 500px;
   padding-top: 128px;
   background-size: cover;
@@ -425,7 +439,7 @@
 
 .components-page .title,
 .tutorial-page .title {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .brand .h1-seo {
@@ -497,5 +511,5 @@
   left: 0;
   top: 0;
   content: "";
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, 0.5);
 }
