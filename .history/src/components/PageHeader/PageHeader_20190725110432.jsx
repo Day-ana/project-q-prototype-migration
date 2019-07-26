@@ -34,6 +34,7 @@ import { Container, Row, Col } from "reactstrap";
 import SearchEvents from "../../views/custom/events/SearchEvents";
 
 const PageHeader = props => {
+  // console.log(props.searchEvents);
   const searchEvents = props.searchEvents;
   return (
     <div className="page-header header-filter">

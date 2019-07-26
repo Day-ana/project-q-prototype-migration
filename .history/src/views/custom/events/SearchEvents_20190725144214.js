@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const SearchEvents = ({ searchEvents, showClear, clearEvents, setAlert }) => {
+const SearchEvents = props => {
   //Set Default location/text for testing
   const [text, setText] = useState("Oakland");
   const [within, setWithin] = useState("50");
   const [keyword, setKeyword] = useState("queer");
 
+  console.log(propps);
+
   const onSubmit = e => {
     e.preventDefault();
     if (text === "") {
-      setAlert("Please enter a Location", "light");
+      // setAlert("Please enter a Location", "light");
     } else {
-      searchEvents(text, within, keyword);
+      searchEvents();
+      // searchEvents(text, within, keyword);
     }
   };
 

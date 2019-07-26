@@ -16,35 +16,27 @@ import {
 
 // react plugin used to create switch buttons
 import Switch from "react-bootstrap-switch";
-
-// const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
-const SearchEvents = props => {
+// { searchEvents, showClear, clearEvents, setAlert }
+const SearchEvents = () => {
   //Set Default location/text for testing
   const [text, setText] = useState("Oakland");
-  const [within, setWithin] = useState("0");
+  const [within, setWithin] = useState("50");
   const [keyword, setKeyword] = useState("queer");
-  // state = {
-  //   location: "Oakland",
-  //   within: "50",
-  //   keyword: "Queer"
-  // };
-
-  console.log(props);
 
   const onSubmit = e => {
     e.preventDefault();
     if (text === "") {
-      // setAlert("Please enter a Location", "light");
+      setAlert("Please enter a Location", "light");
     } else {
-      console.log(e);
-      props.searchEvents(text, keyword);
+      // searchEvents(text, within, keyword);
+      this.props.SearchEvents();
     }
   };
 
-  // const onSelectRange = e => {
-  //   e.preventDefault();
-  //   setWithin(e.target.value);
-  // };
+  const onSelectRange = e => {
+    e.preventDefault();
+    setWithin(e.target.value);
+  };
 
   const onSelectKeyword = e => {
     e.preventDefault();
@@ -77,7 +69,7 @@ const SearchEvents = props => {
             </Button>
           </Col>
         </Row>
-        {/* <Row>
+        <Row>
           <Col className="col-sm">
             <p className="category">Within miles:</p>
             <select onChange={onSelectRange} value={within}>
@@ -118,7 +110,7 @@ const SearchEvents = props => {
               </button>
             )}
           </Col>
-        </Row> */}
+        </Row>
       </form>
     </div>
   );

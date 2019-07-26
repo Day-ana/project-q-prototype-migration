@@ -85,14 +85,13 @@ class Index extends React.Component {
 
     this.setState({ events: res.data, loading: false });
   }
-
-  searchEvents = async (location, keyword) => {
-    // console.log(a, b);
+  searchEvents await = (a, b) => {
+    this.setState({ location: a });
     this.setState({ loading: true });
-    const res = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${50}mi&token=${
-        process.env.REACT_APP_EVENTBRITE_CLIENT_ID
-      }`
+    const res  axios.get(
+      `https://www.eventbriteapi.com/v3/events/search/?q=${
+        b
+      }&location.address=${a}&sort_by=date&location.within=50mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
     );
 
     this.setState({ events: res.data, loading: false });

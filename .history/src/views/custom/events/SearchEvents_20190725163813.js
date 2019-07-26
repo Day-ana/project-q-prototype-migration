@@ -77,7 +77,7 @@ const SearchEvents = props => {
             </Button>
           </Col>
         </Row>
-        {/* <Row>
+        <Row>
           <Col className="col-sm">
             <p className="category">Within miles:</p>
             <select onChange={onSelectRange} value={within}>
@@ -118,7 +118,7 @@ const SearchEvents = props => {
               </button>
             )}
           </Col>
-        </Row> */}
+        </Row>
       </form>
     </div>
   );

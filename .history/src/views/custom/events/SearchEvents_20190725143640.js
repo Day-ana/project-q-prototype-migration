@@ -23,11 +23,6 @@ const SearchEvents = props => {
   const [text, setText] = useState("Oakland");
   const [within, setWithin] = useState("0");
   const [keyword, setKeyword] = useState("queer");
-  // state = {
-  //   location: "Oakland",
-  //   within: "50",
-  //   keyword: "Queer"
-  // };
 
   console.log(props);
 
@@ -36,8 +31,9 @@ const SearchEvents = props => {
     if (text === "") {
       // setAlert("Please enter a Location", "light");
     } else {
-      console.log(e);
-      props.searchEvents(text, keyword);
+      // callSearchEvents("Miami", 100, "queer");
+      // props.searchEvent("Miami")
+      alert(0);
     }
   };
 
@@ -46,10 +42,10 @@ const SearchEvents = props => {
   //   setWithin(e.target.value);
   // };
 
-  const onSelectKeyword = e => {
-    e.preventDefault();
-    setKeyword(e.target.value);
-  };
+  // const onSelectKeyword = e => {
+  //   e.preventDefault();
+  //   setKeyword(e.target.value);
+  // };
 
   const onChange = e => setText(e.target.value);
 

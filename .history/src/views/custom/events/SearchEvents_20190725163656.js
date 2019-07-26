@@ -46,10 +46,10 @@ const SearchEvents = props => {
   //   setWithin(e.target.value);
   // };
 
-  const onSelectKeyword = e => {
-    e.preventDefault();
-    setKeyword(e.target.value);
-  };
+  // const onSelectKeyword = e => {
+  //   e.preventDefault();
+  //   setKeyword(e.target.value);
+  // };
 
   const onChange = e => setText(e.target.value);
 
