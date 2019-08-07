@@ -53,7 +53,6 @@ const PageHeader = props => {
             </Col>
           </Row>
           <Row>
-            {console.log(props)}
             <Col>
               <SearchEvents props={props} searchEvents={searchEvents} />
             </Col>

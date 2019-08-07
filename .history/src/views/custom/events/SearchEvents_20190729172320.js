@@ -20,9 +20,9 @@ import Switch from "react-bootstrap-switch";
 // const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-  const [text, setText] = useState("Miami");
-  const [within, setWithin] = useState("100");
-  const [keyword, setKeyword] = useState("lesbian");
+  const [text, setText] = useState("Oakland");
+  const [within, setWithin] = useState("0");
+  const [keyword, setKeyword] = useState("queer");
   // state = {
   //   location: "Oakland",
   //   within: "50",
@@ -34,21 +34,20 @@ const SearchEvents = props => {
   const onSubmit = e => {
     e.preventDefault();
     if (text === "") {
-      // setAlert("Please enter a Location", "light");
+      setAlert("Please enter a Location", "light");
     } else {
       console.log(e);
       props.searchEvents(text, keyword);
     }
   };
 
-  const onSelectRange = e => {
-    e.preventDefault();
-    setWithin(e.target.value);
-  };
+  // const onSelectRange = e => {
+  //   e.preventDefault();
+  //   setWithin(e.target.value);
+  // };
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
     setKeyword(e.target.value);
   };
 
@@ -97,11 +96,11 @@ const SearchEvents = props => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* {showClear && (
+            {showClear && (
               <button className="btn btn-light btn-block" onClick={clearEvents}>
                 Clear
               </button>
-            )}  */}
+            )}
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>
@@ -113,11 +112,11 @@ const SearchEvents = props => {
               onText=""
             />
             <br />
-            {/* {showClear && (
+            {showClear && (
               <button className="btn btn-light btn-block" onClick={clearEvents}>
                 Clear
               </button>
-            )} */}
+            )}
           </Col>
         </Row>
       </form>

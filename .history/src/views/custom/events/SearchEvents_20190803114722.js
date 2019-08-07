@@ -21,7 +21,7 @@ import Switch from "react-bootstrap-switch";
 const SearchEvents = props => {
   //Set Default location/text for testing
   const [text, setText] = useState("Miami");
-  const [within, setWithin] = useState("100");
+  const [within, setWithin] = useState("0");
   const [keyword, setKeyword] = useState("lesbian");
   // state = {
   //   location: "Oakland",
@@ -48,7 +48,6 @@ const SearchEvents = props => {
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
     setKeyword(e.target.value);
   };
 
@@ -91,17 +90,17 @@ const SearchEvents = props => {
           </Col>
           <Col className="col-sm">
             <p className="category">Keyword:</p>
-            <select onChange={onSelectKeyword} value={keyword}>
+            {/* <select onChange={onSelectKeyword} value={keyword}>
               <option value="queer">Queer</option>
               <option value="lesbian">Lesbian</option>
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* {showClear && (
+            {showClear && (
               <button className="btn btn-light btn-block" onClick={clearEvents}>
                 Clear
               </button>
-            )}  */}
+            )} */}
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>

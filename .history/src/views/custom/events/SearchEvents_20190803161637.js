@@ -48,7 +48,6 @@ const SearchEvents = props => {
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
     setKeyword(e.target.value);
   };
 

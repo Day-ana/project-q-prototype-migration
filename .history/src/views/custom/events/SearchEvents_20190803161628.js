@@ -48,7 +48,6 @@ const SearchEvents = props => {
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
     setKeyword(e.target.value);
   };
 
@@ -97,11 +96,11 @@ const SearchEvents = props => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* {showClear && (
+            {*/{showClear && (
               <button className="btn btn-light btn-block" onClick={clearEvents}>
                 Clear
               </button>
-            )}  */}
+            )} */}
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>
