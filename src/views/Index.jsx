@@ -73,21 +73,11 @@ class Index extends React.Component {
 
   async componentWillMount() {
     document.body.classList.toggle("index-page");
-    this.setState({ loading: true });
-
-    const res = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${
-        this.state.keyword
-      }&location.address=${this.state.location}&sort_by=date&location.within=${
-        this.state.within
-      }mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
-    );
-
-    this.setState({ events: res.data, loading: false });
+    console.log(this.state.keyword);
+    this.searchEvents(this.state.location, this.state.keyword);
   }
 
   searchEvents = async (location, keyword) => {
-    // console.log(a, b);
     this.setState({ loading: true });
     const res = await axios.get(
       `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${50}mi&token=${
@@ -106,9 +96,15 @@ class Index extends React.Component {
       <>
         <IndexNavbar />
         <div className="wrapper">
-          <PageHeader searchEvents={this.searchEvents} props={this.state} />
+          <PageHeader
+            searchEvents={this.searchEvents}
+            location={this.state.location}
+          />
           <div className="main">
-            <Events loading={this.state.loading} events={this.state.events} />
+            {<Events loading={this.state.loading} events={this.state.events} />}
+            {/* <NucleoIcons /> */}
+            {/* <Typography /> */}
+            {/* <Basics /> */}
             {/* <Basics />
             <Navbars />
             <Tabs />

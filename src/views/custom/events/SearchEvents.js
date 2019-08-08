@@ -20,14 +20,13 @@ import Switch from "react-bootstrap-switch";
 // const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-  const [text, setText] = useState("Miami");
-  const [within, setWithin] = useState("100");
-  const [keyword, setKeyword] = useState("lesbian");
-  // state = {
-  //   location: "Oakland",
-  //   within: "50",
-  //   keyword: "Queer"
-  // };
+  // const [text, setText] = useState("Oakland");
+  // const [within, setWithin] = useState("100");
+  // const [keyword, setKeyword] = useState("Queer");
+
+  const [text, setText] = useState("");
+  const [within, setWithin] = useState("Oakland");
+  const [keyword, setKeyword] = useState("");
 
   console.log(props);
 
@@ -36,7 +35,7 @@ const SearchEvents = props => {
     if (text === "") {
       // setAlert("Please enter a Location", "light");
     } else {
-      console.log(e);
+      // console.log(e);
       props.searchEvents(text, keyword);
     }
   };
@@ -48,7 +47,7 @@ const SearchEvents = props => {
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setKeyword(e.target.value);
   };
 

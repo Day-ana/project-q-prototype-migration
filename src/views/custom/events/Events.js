@@ -9,6 +9,8 @@ export class Events extends Component {
 
     const returnedEvents = events;
 
+    console.log(returnedEvents);
+
     const eventstyle = {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -25,7 +27,6 @@ export class Events extends Component {
     } else if (returnedEvents !== 0) {
       return (
         <Container style={eventstyle}>
-          {console.log(returnedEvents)}
           {returnedEvents.events.map(event => (
             <EventItem event={event} key={event.id} />
           ))}
@@ -33,9 +34,9 @@ export class Events extends Component {
       );
     } else {
       return (
-        <div>
+        <Container>
           <h2>Please enter a location....</h2>
-        </div>
+        </Container>
       );
     }
   }
