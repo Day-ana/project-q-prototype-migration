@@ -51,25 +51,13 @@ class Index extends React.Component {
     this.state = {
       events: {},
       event: [],
-      loading: null,
+      loading: false,
       location: "Oakland",
       within: 10,
       keyword: "queer",
       isFree: false
     };
   }
-
-  // searchEvents = () => async (location, within, keyword) => {
-  //   this.setState({ loading: true }
-  //   // console.log(location, within, keyword);
-  //   const res = await axios.get(
-  //     `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${
-  //       process.env.REACT_APP_EVENTBRITE_CLIENT_ID
-  //     }`
-  //   );
-  //   this.setState(events: res.data);
-  //   this.setState({ loading: true }
-  // };
 
   async componentWillMount() {
     document.body.classList.toggle("index-page");
@@ -91,6 +79,7 @@ class Index extends React.Component {
   componentWillUnmount() {
     document.body.classList.toggle("index-page");
   }
+
   render() {
     return (
       <>
@@ -99,6 +88,7 @@ class Index extends React.Component {
           <PageHeader
             searchEvents={this.searchEvents}
             location={this.state.location}
+            loading={this.state.loading}
           />
           <div className="main">
             {<Events loading={this.state.loading} events={this.state.events} />}

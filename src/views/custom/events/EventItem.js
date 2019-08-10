@@ -47,7 +47,7 @@ class EventItem extends Component {
               textOverflow: "ellipsis",
               overflow: "hidden",
               whiteSpace: "wrap",
-              width: "300px",
+              width: "320px",
               height: "120px"
             }}
           >
@@ -56,6 +56,7 @@ class EventItem extends Component {
           <h3 color="Danger">{date.toString()}</h3>
           {/* <h4>{start.local}</h4> */}
           <h4>{time}</h4>
+          <h5>{id}</h5>
         </Col>
 
         <Col>
@@ -66,18 +67,17 @@ class EventItem extends Component {
         </Col>
         <Col>
           <div className="typography-line" style={{ paddingLeft: "0" }}>
-            <p>{id}</p>
+            <p>Description:</p>
             <p
               className="text-muted"
               style={{
                 textOverflow: "ellipsis",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                maxWidth: "300px"
+                maxWidth: "400px"
               }}
             >
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
+              {description.text}
             </p>
           </div>
           <div className="typography-line" />

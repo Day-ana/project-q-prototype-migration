@@ -20,23 +20,19 @@ import Switch from "react-bootstrap-switch";
 // const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-  // const [text, setText] = useState("Oakland");
-  // const [within, setWithin] = useState("100");
-  // const [keyword, setKeyword] = useState("Queer");
 
-  const [text, setText] = useState("");
-  const [within, setWithin] = useState("Oakland");
-  const [keyword, setKeyword] = useState("");
-
-  console.log(props);
+  const [location, setLocation] = useState("Oakland");
+  const [within, setWithin] = useState("100");
+  const [keyword, setKeyword] = useState("Queer");
+  const [loading, setLoading] = useState(null);
 
   const onSubmit = e => {
     e.preventDefault();
-    if (text === "") {
+    if (location === "") {
       // setAlert("Please enter a Location", "light");
     } else {
-      // console.log(e);
-      props.searchEvents(text, keyword);
+      props.searchEvents(location, keyword);
+      scrollAfterSearch();
     }
   };
 
@@ -47,11 +43,20 @@ const SearchEvents = props => {
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    // console.log(e.target.value);
     setKeyword(e.target.value);
   };
 
-  const onChange = e => setText(e.target.value);
+  const onChange = e => setLocation(e.target.value);
+
+  //Scroll to events section after a seach has been submitted
+  const scrollAfterSearch = () => {
+    if (!loading) {
+      document
+        .getElementById("events-container")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="search">
@@ -62,7 +67,7 @@ const SearchEvents = props => {
               type="text"
               name="text"
               placeholder="Enter a location..."
-              value={text}
+              value={location}
               onChange={onChange}
             />
             {/* <Input
@@ -72,7 +77,12 @@ const SearchEvents = props => {
           /> */}
           </Col>
           <Col sm="4">
-            <Button color="primary" value="search" type="submit">
+            <Button
+              color="primary"
+              value="search"
+              type="submit"
+              onSubmit={scrollAfterSearch}
+            >
               Queeery
             </Button>
           </Col>

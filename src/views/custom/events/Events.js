@@ -13,20 +13,18 @@ export class Events extends Component {
 
     const eventstyle = {
       display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
+      gridTemplateColumns: "repeat(2, 1fr)",
       gridGap: "1rem",
       // border: "1px solid rgb(255, 1, 151)",
       padding: "20px 30px"
-      // transition: "background 200ms",
-      // boxShadow: "-1px -3px 19px #ff019740",
-      // borderRadius: "5px"
+      // boxShadow: "-1px -3px 19px #ff019740"
     };
 
     if (loading) {
       return <Spinner />;
     } else if (returnedEvents !== 0) {
       return (
-        <Container style={eventstyle}>
+        <Container id="events-container" style={eventstyle}>
           {returnedEvents.events.map(event => (
             <EventItem event={event} key={event.id} />
           ))}
