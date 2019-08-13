@@ -43,6 +43,8 @@ import {
   UncontrolledCarousel
 } from "reactstrap";
 
+import axios from "axios";
+
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -67,11 +69,14 @@ const carouselItems = [
 
 let ps = null;
 
-class ProfilePage extends React.Component {
+class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabs: 1
+      tabs: 1,
+      event: [],
+      locationInfo: [],
+      loading: false
     };
   }
   componentDidMount() {
@@ -85,6 +90,33 @@ class ProfilePage extends React.Component {
     }
     document.body.classList.toggle("profile-page");
   }
+
+  async componentWillMount() {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://www.eventbriteapi.com/v3/events/${
+        this.props.match.params.id
+      }/?expand=category&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+    );
+
+    const mapInfo = await axios.get(
+      `https://www.eventbriteapi.com/v3/events/${
+        this.props.match.params.id
+      }/?expand=venue&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+    );
+
+    this.setState({
+      event: res.data,
+      locationInfo: mapInfo.data,
+      loading: false
+    });
+    console.log(this.state.event);
+    // console.log(this.state.event.description.text);
+    // console.log(this.state.locationInfo.venue);
+
+    // console.log(this.props.match.params.id);
+  }
+
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy();
@@ -100,6 +132,17 @@ class ProfilePage extends React.Component {
     });
   };
   render() {
+    const { description, name, time, is_free, logo } = this.state.event;
+    const { venue } = this.state.locationInfo;
+
+    if (name) {
+      console.log(name.text);
+    }
+
+    if (venue) {
+      console.log(venue.address.localized_address_display);
+    }
+
     return (
       <>
         <ExamplesNavbar />
@@ -118,16 +161,16 @@ class ProfilePage extends React.Component {
             <Container className="align-items-center">
               <Row>
                 <Col lg="6" md="6">
+                  <img
+                    src={logo && logo.original.url}
+                    class="img-fluid"
+                    alt="Responsive image"
+                  />
+
                   <h1 className="profile-title text-left">
-                    Queeery - Misssion Statement
+                    {name && name.text}
                   </h1>
-                  <h5 className="text-on-back">01</h5>
-                  <p className="profile-description">
-                    Queeery is aiming to be the web's largest database of all
-                    things queer. Our mission is to cultivate, educate, and
-                    bring the LGBTQ community together through the promotion of
-                    events and meetups thoughout the queer world.
-                  </p>
+
                   <div className="btn-wrapper profile pt-3">
                     <Button
                       className="btn-icon btn-round"
@@ -156,7 +199,7 @@ class ProfilePage extends React.Component {
                     <Button
                       className="btn-icon btn-round"
                       color="instagram"
-                      href="https://dribbble.com/queeeryhq"
+                      href="https://instagram.com/queeeryhq"
                       id="tooltip951161185"
                       target="_blank"
                     >
@@ -175,7 +218,7 @@ class ProfilePage extends React.Component {
                         className="img-center img-fluid rounded-circle"
                         src={require("assets/img/mike.jpg")}
                       />
-                      <h4 className="title">Transactions</h4>
+                      <h4 className="title">Event Details</h4>
                     </CardHeader>
                     <CardBody>
                       <Nav
@@ -190,7 +233,7 @@ class ProfilePage extends React.Component {
                             onClick={e => this.toggleTabs(e, "tabs", 1)}
                             href="#pablo"
                           >
-                            Wallet
+                            Location
                           </NavLink>
                         </NavItem>
                         <NavItem>
@@ -221,32 +264,31 @@ class ProfilePage extends React.Component {
                         activeTab={"tab" + this.state.tabs}
                       >
                         <TabPane tabId="tab1">
-                          <Table className="tablesorter" responsive>
-                            <thead className="text-primary">
-                              <tr>
-                                <th className="header">COIN</th>
-                                <th className="header">AMOUNT</th>
-                                <th className="header">VALUE</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>BTC</td>
-                                <td>7.342</td>
-                                <td>48,870.75 USD</td>
-                              </tr>
-                              <tr>
-                                <td>ETH</td>
-                                <td>30.737</td>
-                                <td>64,53.30 USD</td>
-                              </tr>
-                              <tr>
-                                <td>XRP</td>
-                                <td>19.242</td>
-                                <td>18,354.96 USD</td>
-                              </tr>
-                            </tbody>
-                          </Table>
+                          <div className="info info-horizontal">
+                            <div className="icon icon-primary">
+                              <i className="tim-icons icon-square-pin" />
+                            </div>
+                            <div className="description">
+                              <h4 className="info-title">Event Location:</h4>
+                              <p>
+                                {venue &&
+                                  venue.address.localized_address_display}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="info info-horizontal">
+                            <div className="icon icon-primary">
+                              <i className="tim-icons icon-mobile" />
+                            </div>
+                            <div className="description">
+                              <h4 className="info-title">Give us a ring</h4>
+                              <p>
+                                Michael Jordan <br />
+                                +40 762 321 762 <br />
+                                Mon - Fri, 8:00-22:00
+                              </p>
+                            </div>
+                          </div>
                         </TabPane>
                         <TabPane tabId="tab2">
                           <Row>
@@ -304,6 +346,15 @@ class ProfilePage extends React.Component {
                   </Card>
                 </Col>
               </Row>
+
+              <Row>
+                <Col>
+                  <h5 className="text-on-back">Q-Description</h5>
+                  <p className="profile-description-queeery">
+                    {description && description.text}
+                  </p>
+                </Col>
+              </Row>
             </Container>
           </div>
           <div className="section">
@@ -318,11 +369,7 @@ class ProfilePage extends React.Component {
                   <h1 className="profile-title text-left">Projects</h1>
                   <h5 className="text-on-back">02</h5>
                   <p className="profile-description text-left">
-                    An artist of considerable range, Ryan — the name taken by
-                    Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                    performs and records all of his own music, giving it a warm,
-                    intimate feel with a solid groove structure. An artist of
-                    considerable range.
+                    {description && description.text}
                   </p>
                   <div className="btn-wrapper pt-3">
                     <Button
@@ -454,4 +501,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage;
+export default DetailsPage;

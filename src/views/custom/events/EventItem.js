@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Nav, NavItem, NavLink, Button } from "reactstrap";
+
 import "assets/css/nucleo-icons.css";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 class EventItem extends Component {
   render() {
@@ -98,6 +100,11 @@ class EventItem extends Component {
                 ""
               )}
             </Col>{" "}
+            <Col>
+              <Button color="info" tag={Link} to={`/details-page/${id}`}>
+                More Info
+              </Button>
+            </Col>
             <Col>
               <Button
                 color="danger"

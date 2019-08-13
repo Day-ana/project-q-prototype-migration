@@ -43,6 +43,8 @@ import {
   UncontrolledCarousel
 } from "reactstrap";
 
+import axios from "axios";
+
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -67,11 +69,14 @@ const carouselItems = [
 
 let ps = null;
 
-class ProfilePage extends React.Component {
+class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabs: 1
+      tabs: 1,
+      event: [],
+      locationInfo: [],
+      loading: false
     };
   }
   componentDidMount() {
@@ -85,6 +90,33 @@ class ProfilePage extends React.Component {
     }
     document.body.classList.toggle("profile-page");
   }
+
+  async componentWillMount() {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://www.eventbriteapi.com/v3/events/${
+        this.props.match.params.id
+      }/?expand=category&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+    );
+
+    const mapInfo = await axios.get(
+      `https://www.eventbriteapi.com/v3/events/${
+        this.props.match.params.id
+      }/?expand=venue&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+    );
+
+    this.setState({
+      event: res.data,
+      locationInfo: mapInfo.data,
+      loading: false
+    });
+    console.log(this.state.event);
+    // console.log(this.state.event.description.text);
+    // console.log(this.state.locationInfo.venue);
+
+    // console.log(this.props.match.params.id);
+  }
+
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy();
@@ -100,6 +132,12 @@ class ProfilePage extends React.Component {
     });
   };
   render() {
+    const { description, name, time, is_free } = this.state.event;
+
+    if (name) {
+      console.log(name.text);
+    }
+
     return (
       <>
         <ExamplesNavbar />
@@ -120,6 +158,8 @@ class ProfilePage extends React.Component {
                 <Col lg="6" md="6">
                   <h1 className="profile-title text-left">
                     Queeery - Misssion Statement
+                    {name && name.text}
+                    {/* {eventName} */}
                   </h1>
                   <h5 className="text-on-back">01</h5>
                   <p className="profile-description">
@@ -156,7 +196,7 @@ class ProfilePage extends React.Component {
                     <Button
                       className="btn-icon btn-round"
                       color="instagram"
-                      href="https://dribbble.com/queeeryhq"
+                      href="https://instagram.com/queeeryhq"
                       id="tooltip951161185"
                       target="_blank"
                     >
@@ -454,4 +494,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage;
+export default DetailsPage;

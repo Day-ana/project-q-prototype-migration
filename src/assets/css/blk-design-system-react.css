@@ -11856,6 +11856,12 @@ textarea.form-control {
     max-width: 450px;
     font-size: 0.875rem;
     line-height: 26px; }
+
+    .profile-page .profile-description-queeery {
+      margin-top: -30px;
+      max-width: 850px;
+      font-size: 0.875rem;
+      line-height: 26px; }
   .profile-page .profile-container {
     color: #ffffff; }
   .profile-page .photo-container {

@@ -92,6 +92,7 @@ class Index extends React.Component {
           />
           <div className="main">
             {<Events loading={this.state.loading} events={this.state.events} />}
+            {/* <DetailsPage path=""></DetailsPage> */}
             {/* <NucleoIcons /> */}
             {/* <Typography /> */}
             {/* <Basics /> */}
