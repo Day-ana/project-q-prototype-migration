@@ -96,7 +96,9 @@ class DetailsPage extends React.Component {
     const res = await axios.get(
       `https://www.eventbriteapi.com/v3/events/${
         this.props.match.params.id
-      }/?expand=category&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+      }/?expand=ticket_availability&token=${
+        process.env.REACT_APP_EVENTBRITE_CLIENT_ID
+      }`
     );
 
     const mapInfo = await axios.get(
@@ -132,16 +134,24 @@ class DetailsPage extends React.Component {
     });
   };
   render() {
-    const { description, name, time, is_free, logo } = this.state.event;
+    const {
+      description,
+      name,
+      url,
+      time,
+      is_free,
+      logo,
+      ticket_availability
+    } = this.state.event;
     const { venue } = this.state.locationInfo;
 
-    if (name) {
-      console.log(name.text);
-    }
+    // if (name) {
+    //   console.log(name.text);
+    // }
 
-    if (venue) {
-      console.log(venue.address.localized_address_display);
-    }
+    // if (ticket_availability) {
+    //   console.log(ticket_availability.has_available_tickets);
+    // }
 
     return (
       <>
@@ -161,63 +171,24 @@ class DetailsPage extends React.Component {
             <Container className="align-items-center">
               <Row>
                 <Col lg="6" md="6">
-                  <img
-                    src={logo && logo.original.url}
-                    class="img-fluid"
-                    alt="Responsive image"
-                  />
-
+                  <h5 className="text-on-back">Q</h5>
                   <h1 className="profile-title text-left">
                     {name && name.text}
                   </h1>
-
-                  <div className="btn-wrapper profile pt-3">
-                    <Button
-                      className="btn-icon btn-round"
-                      color="twitter"
-                      href="https://twitter.com/queeeryhq"
-                      id="tooltip639225725"
-                      target="_blank"
-                    >
-                      <i className="fab fa-twitter" />
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip639225725">
-                      Follow us
-                    </UncontrolledTooltip>
-                    <Button
-                      className="btn-icon btn-round"
-                      color="facebook"
-                      href="https://www.facebook.com/queeeryhq"
-                      id="tooltip982846143"
-                      target="_blank"
-                    >
-                      <i className="fab fa-facebook-square" />
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip982846143">
-                      Like us
-                    </UncontrolledTooltip>
-                    <Button
-                      className="btn-icon btn-round"
-                      color="instagram"
-                      href="https://instagram.com/queeeryhq"
-                      id="tooltip951161185"
-                      target="_blank"
-                    >
-                      <i className="fab fa-dribbble" />
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip951161185">
-                      Follow us
-                    </UncontrolledTooltip>
-                  </div>
+                  <img
+                    src={logo && logo.original.url}
+                    className="img-center img-fluid"
+                    alt="Responsive image"
+                  />
                 </Col>
-                <Col className="ml-auto mr-auto" lg="4" md="6">
+                <Col className="ml-auto mr-auto margin-120" lg="4" md="6">
                   <Card className="card-coin card-plain">
                     <CardHeader>
-                      <img
+                      {/* <img
                         alt="..."
                         className="img-center img-fluid rounded-circle"
                         src={require("assets/img/mike.jpg")}
-                      />
+                      /> */}
                       <h4 className="title">Event Details</h4>
                     </CardHeader>
                     <CardBody>
@@ -244,18 +215,7 @@ class DetailsPage extends React.Component {
                             onClick={e => this.toggleTabs(e, "tabs", 2)}
                             href="#pablo"
                           >
-                            Send
-                          </NavLink>
-                        </NavItem>
-                        <NavItem>
-                          <NavLink
-                            className={classnames({
-                              active: this.state.tabs === 3
-                            })}
-                            onClick={e => this.toggleTabs(e, "tabs", 3)}
-                            href="#pablo"
-                          >
-                            News
+                            Venue
                           </NavLink>
                         </NavItem>
                       </Nav>
@@ -270,6 +230,7 @@ class DetailsPage extends React.Component {
                             </div>
                             <div className="description">
                               <h4 className="info-title">Event Location:</h4>
+                              <h6>{venue && venue.name}</h6>
                               <p>
                                 {venue &&
                                   venue.address.localized_address_display}
@@ -281,12 +242,22 @@ class DetailsPage extends React.Component {
                               <i className="tim-icons icon-mobile" />
                             </div>
                             <div className="description">
-                              <h4 className="info-title">Give us a ring</h4>
-                              <p>
-                                Michael Jordan <br />
-                                +40 762 321 762 <br />
-                                Mon - Fri, 8:00-22:00
+                              <p style={{ margin: "25px 7px" }}>
+                                Starting @ $10{" "}
+                                {/* {(ticket_availability &&
+                                  ticket_availability.minimum_ticket_price
+                                    .display) ||
+                                  "N/A"} */}
                               </p>
+                              <Button
+                                color="danger"
+                                className="float-left"
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Tickets
+                              </Button>
                             </div>
                           </div>
                         </TabPane>
@@ -313,46 +284,10 @@ class DetailsPage extends React.Component {
                               </FormGroup>
                             </Col>
                           </Row>
-                          <Button
-                            className="btn-simple btn-icon btn-round float-right"
-                            color="primary"
-                            type="submit"
-                          >
-                            <i className="tim-icons icon-send" />
-                          </Button>
-                        </TabPane>
-                        <TabPane tabId="tab3">
-                          <Table className="tablesorter" responsive>
-                            <thead className="text-primary">
-                              <tr>
-                                <th className="header">Latest Crypto News</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>The Daily: Nexo to Pay on Stable...</td>
-                              </tr>
-                              <tr>
-                                <td>Venezuela Begins Public of Nation...</td>
-                              </tr>
-                              <tr>
-                                <td>PR: BitCanna – Dutch Blockchain...</td>
-                              </tr>
-                            </tbody>
-                          </Table>
                         </TabPane>
                       </TabContent>
                     </CardBody>
                   </Card>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <h5 className="text-on-back">Q-Description</h5>
-                  <p className="profile-description-queeery">
-                    {description && description.text}
-                  </p>
                 </Col>
               </Row>
             </Container>
@@ -360,15 +295,8 @@ class DetailsPage extends React.Component {
           <div className="section">
             <Container>
               <Row className="justify-content-between">
-                <Col md="6">
-                  <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={carouselItems} />
-                  </Row>
-                </Col>
-                <Col md="5">
-                  <h1 className="profile-title text-left">Projects</h1>
-                  <h5 className="text-on-back">02</h5>
-                  <p className="profile-description text-left">
+                <Col>
+                  <p className="details-description text-left">
                     {description && description.text}
                   </p>
                   <div className="btn-wrapper pt-3">
@@ -393,107 +321,6 @@ class DetailsPage extends React.Component {
               </Row>
             </Container>
           </div>
-          <section className="section">
-            <Container>
-              <Row>
-                <Col md="6">
-                  <Card className="card-plain">
-                    <CardHeader>
-                      <h1 className="profile-title text-left">Contact</h1>
-                      <h5 className="text-on-back">03</h5>
-                    </CardHeader>
-                    <CardBody>
-                      <Form>
-                        <Row>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Your Name</label>
-                              <Input defaultValue="Mike" type="text" />
-                            </FormGroup>
-                          </Col>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Email address</label>
-                              <Input
-                                placeholder="mike@email.com"
-                                type="email"
-                              />
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Phone</label>
-                              <Input defaultValue="001-12321345" type="text" />
-                            </FormGroup>
-                          </Col>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Company</label>
-                              <Input defaultValue="CreativeTim" type="text" />
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col md="12">
-                            <FormGroup>
-                              <label>Message</label>
-                              <Input placeholder="Hello there!" type="text" />
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                        <Button
-                          className="btn-round float-right"
-                          color="primary"
-                          data-placement="right"
-                          id="tooltip341148792"
-                          type="button"
-                        >
-                          Send text
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          placement="right"
-                          target="tooltip341148792"
-                        >
-                          Can't wait for your message
-                        </UncontrolledTooltip>
-                      </Form>
-                    </CardBody>
-                  </Card>
-                </Col>
-                <Col className="ml-auto" md="4">
-                  <div className="info info-horizontal">
-                    <div className="icon icon-primary">
-                      <i className="tim-icons icon-square-pin" />
-                    </div>
-                    <div className="description">
-                      <h4 className="info-title">Find us at the office</h4>
-                      <p>
-                        Bld Mihail Kogalniceanu, nr. 8, <br />
-                        7652 Bucharest, <br />
-                        Romania
-                      </p>
-                    </div>
-                  </div>
-                  <div className="info info-horizontal">
-                    <div className="icon icon-primary">
-                      <i className="tim-icons icon-mobile" />
-                    </div>
-                    <div className="description">
-                      <h4 className="info-title">Give us a ring</h4>
-                      <p>
-                        Michael Jordan <br />
-                        +40 762 321 762 <br />
-                        Mon - Fri, 8:00-22:00
-                      </p>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </section>
           <Footer />
         </div>
       </>
