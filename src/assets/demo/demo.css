@@ -1,5 +1,10 @@
 /* //Queeery Custom  */
 
+.details-spinner {
+  /* margin: 50%; */
+  margin-top: 45%;
+}
+
 .q-event-item {
   transition: background 200ms;
   border: 1px solid rgba(255, 1, 151, 0.22);

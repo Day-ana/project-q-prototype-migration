@@ -19,6 +19,7 @@ import React from "react";
 import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+
 // reactstrap components
 import {
   Button,
@@ -44,6 +45,7 @@ import {
 } from "reactstrap";
 
 import axios from "axios";
+import Spinner from "../custom/layout/Spinner";
 
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
@@ -138,21 +140,47 @@ class DetailsPage extends React.Component {
       description,
       name,
       url,
-      time,
       is_free,
+      start,
       logo,
       ticket_availability
     } = this.state.event;
     const { venue } = this.state.locationInfo;
-
-    // if (name) {
-    //   console.log(name.text);
+    let date;
+    let time;
+    let price;
+    // const date = new Date(start.local).toDateString();
+    // let time = new Date(start.local).toLocaleTimeString();
+    // // if length is 10 convert to american time zone
+    // // otherwise .toLocaleTimeString() will do for now
+    // if (time.length === 10) {
+    //   time = time.slice(0, 4) + " " + time.slice(-2);
     // }
+
+    // console.log(start.local);
+    // console.log(start && start.local.toDateString());
+
+    if (this.state.loading)
+      return (
+        <Container className="align-items-center">
+          <Row>
+            <Col className="details-spinner">
+              <Spinner />
+            </Col>
+          </Row>
+        </Container>
+      );
+
+    if (start) {
+      date = new Date(start.local).toDateString();
+      time = new Date(start.local).toLocaleTimeString();
+    }
 
     // if (ticket_availability) {
-    //   console.log(ticket_availability.has_available_tickets);
+    //   price = ticket_availability.minimum_ticket_price.display;
     // }
 
+    console.log(date, time, price);
     return (
       <>
         <ExamplesNavbar />
@@ -215,7 +243,7 @@ class DetailsPage extends React.Component {
                             onClick={e => this.toggleTabs(e, "tabs", 2)}
                             href="#pablo"
                           >
-                            Venue
+                            Tickets
                           </NavLink>
                         </NavItem>
                       </Nav>
@@ -229,8 +257,10 @@ class DetailsPage extends React.Component {
                               <i className="tim-icons icon-square-pin" />
                             </div>
                             <div className="description">
-                              <h4 className="info-title">Event Location:</h4>
-                              <h6>{venue && venue.name}</h6>
+                              {/* <h3 className="info-title">Event Location:</h3> */}
+                              <h4 className="info-title">
+                                {venue && venue.name}
+                              </h4>
                               <p>
                                 {venue &&
                                   venue.address.localized_address_display}
@@ -239,15 +269,32 @@ class DetailsPage extends React.Component {
                           </div>
                           <div className="info info-horizontal">
                             <div className="icon icon-primary">
-                              <i className="tim-icons icon-mobile" />
+                              <i className="tim-icons icon-calendar-60" />
+                            </div>
+                            <div className="description">
+                              <h4 style={{ margin: "25px 7px" }}>{date}</h4>
+                              <h4 style={{ margin: "25px 7px" }}>{time}</h4>
+                              {/* <Button
+                                color="danger"
+                                className="float-left"
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Tickets
+                              </Button> */}
+                            </div>
+                          </div>
+                        </TabPane>
+                        <TabPane tabId="tab2">
+                          <div className="info info-horizontal">
+                            <div className="icon icon-primary">
+                              <i className="tim-icons icon-money-coins" />
                             </div>
                             <div className="description">
                               <p style={{ margin: "25px 7px" }}>
-                                Starting @ $10{" "}
-                                {/* {(ticket_availability &&
-                                  ticket_availability.minimum_ticket_price
-                                    .display) ||
-                                  "N/A"} */}
+                                {/* Starting @ {price} */}
+                                Starting @ XX
                               </p>
                               <Button
                                 color="danger"
@@ -260,30 +307,6 @@ class DetailsPage extends React.Component {
                               </Button>
                             </div>
                           </div>
-                        </TabPane>
-                        <TabPane tabId="tab2">
-                          <Row>
-                            <Label sm="3">Pay to</Label>
-                            <Col sm="9">
-                              <FormGroup>
-                                <Input
-                                  placeholder="e.g. 1Nasd92348hU984353hfid"
-                                  type="text"
-                                />
-                                <FormText color="default" tag="span">
-                                  Please enter a valid address.
-                                </FormText>
-                              </FormGroup>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Label sm="3">Amount</Label>
-                            <Col sm="9">
-                              <FormGroup>
-                                <Input placeholder="1.587" type="text" />
-                              </FormGroup>
-                            </Col>
-                          </Row>
                         </TabPane>
                       </TabContent>
                     </CardBody>
