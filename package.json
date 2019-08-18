@@ -32,9 +32,11 @@
   },
   "homepage": "https://github.com/creativetimofficial/blk-design-system-react#readme",
   "dependencies": {
+    "@types/google-map-react": "^0.23.12",
     "axios": "^0.19.0",
     "chart.js": "2.7.3",
     "classnames": "2.2.6",
+    "google-map-react": "^1.1.4",
     "moment": "2.24.0",
     "node-sass": "4.11.0",
     "nouislider": "13.1.1",

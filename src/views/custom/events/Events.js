@@ -9,7 +9,7 @@ export class Events extends Component {
 
     const returnedEvents = events;
 
-    console.log(returnedEvents);
+    // console.log(returnedEvents);
 
     const eventstyle = {
       display: "grid",

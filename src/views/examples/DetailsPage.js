@@ -46,6 +46,7 @@ import {
 
 import axios from "axios";
 import Spinner from "../custom/layout/Spinner";
+import SimpleMap from "../custom/events/SimpleMap";
 
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
@@ -108,7 +109,6 @@ class DetailsPage extends React.Component {
         this.props.match.params.id
       }/?expand=venue&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
     );
-
     this.setState({
       event: res.data,
       locationInfo: mapInfo.data,
@@ -180,7 +180,7 @@ class DetailsPage extends React.Component {
     //   price = ticket_availability.minimum_ticket_price.display;
     // }
 
-    console.log(date, time, price);
+    // console.log(date, time, price);
     return (
       <>
         <ExamplesNavbar />
@@ -197,7 +197,7 @@ class DetailsPage extends React.Component {
               src={require("assets/img/path4.png")}
             />
             <Container className="align-items-center">
-              <Row>
+              <Row className="details-height">
                 <Col lg="6" md="6">
                   <h5 className="text-on-back">Q</h5>
                   <h1 className="profile-title text-left">
@@ -322,6 +322,8 @@ class DetailsPage extends React.Component {
                   <p className="details-description text-left">
                     {description && description.text}
                   </p>
+                  <SimpleMap mapInfo={venue} />
+
                   <div className="btn-wrapper pt-3">
                     <Button
                       className="btn-simple"
