@@ -31,7 +31,7 @@ class SimpleMap extends Component {
       <div style={{ height: "40vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
-            key: "AIzaSyB5QfLTdjCkCOhRKzvf1Qhof-X77q1N9r8"
+            key: ""
           }}
           defaultCenter={this.state.center}
           // center={center}
