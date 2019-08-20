@@ -21,8 +21,15 @@ import Switch from "react-bootstrap-switch";
 const SearchEvents = props => {
   //Set Default location/text for testing
 
+  const drilledKeyWord = props.props.props.keyword;
+
+  // console.log(keyWordProp);
+
+  // console.log(props.props.props.keyword);
+  // const { keyword, loading, location, within } = props.props;
+
   const [location, setLocation] = useState("Oakland");
-  const [within, setWithin] = useState("100");
+  const [within, setWithin] = useState("50");
   const [keyword, setKeyword] = useState("Queer");
   const [loading, setLoading] = useState(null);
 
@@ -31,18 +38,21 @@ const SearchEvents = props => {
     if (location === "") {
       // setAlert("Please enter a Location", "light");
     } else {
-      props.searchEvents(location, keyword);
+      console.log(location, keyword, within);
+      props.searchEvents(location, keyword, within);
       scrollAfterSearch();
     }
   };
 
   const onSelectRange = e => {
     e.preventDefault();
+    console.log(e.target.value);
     setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
+    console.log(e.target.value);
     setKeyword(e.target.value);
   };
 

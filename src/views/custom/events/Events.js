@@ -7,10 +7,6 @@ export class Events extends Component {
   render() {
     const { events, loading } = this.props;
 
-    const returnedEvents = events;
-
-    // console.log(returnedEvents);
-
     const eventstyle = {
       display: "grid",
       gridTemplateColumns: "repeat(2, 1fr)",
@@ -22,10 +18,11 @@ export class Events extends Component {
 
     if (loading) {
       return <Spinner />;
-    } else if (returnedEvents !== 0) {
+    } else if (events !== 0) {
       return (
         <Container id="events-container" style={eventstyle}>
-          {returnedEvents.events.map(event => (
+          {/* {console.log(events)} */}
+          {events.events.map(event => (
             <EventItem event={event} key={event.id} />
           ))}
         </Container>

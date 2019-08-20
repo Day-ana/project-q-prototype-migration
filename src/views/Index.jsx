@@ -35,11 +35,14 @@ import Signup from "views/IndexSections/Signup.jsx";
 import Examples from "views/IndexSections/Examples.jsx";
 import Download from "views/IndexSections/Download.jsx";
 
+import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+
 // Queeery original routing //TODO check current template routing
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // import Navbar from "../views/custom/layout/Navbar";
 import Events from "../views/custom/events/Events";
+import Spinner from "../views/custom/layout/Spinner";
 // import Event from "../views/custom/events/Event";
 // import Alert from "../views/custom/layout/Alert";
 // import About from "../views/custom/pages/About";
@@ -53,27 +56,35 @@ class Index extends React.Component {
       event: [],
       loading: false,
       location: "Oakland",
-      within: 10,
-      keyword: "queer",
+      keyword: "Queer",
+      within: 50,
       isFree: false
     };
   }
-
+  // Seach events needed to activate
   async componentWillMount() {
     document.body.classList.toggle("index-page");
-    console.log(this.state.keyword);
-    this.searchEvents(this.state.location, this.state.keyword);
+    this.searchEvents(
+      this.state.location,
+      this.state.keyword,
+      this.state.within
+    );
   }
 
-  searchEvents = async (location, keyword) => {
+  searchEvents = async (location, keyword, within) => {
     this.setState({ loading: true });
     const res = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${50}mi&token=${
+      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${
         process.env.REACT_APP_EVENTBRITE_CLIENT_ID
       }`
     );
-
-    this.setState({ events: res.data, loading: false });
+    this.setState({
+      events: res.data,
+      loading: false,
+      location: location,
+      keyword: keyword,
+      within: within
+    });
   };
 
   componentWillUnmount() {
@@ -88,10 +99,23 @@ class Index extends React.Component {
           <PageHeader
             searchEvents={this.searchEvents}
             location={this.state.location}
-            loading={this.state.loading}
+            keyword={this.state.keyword}
+            props={this.state}
           />
           <div className="main">
-            {<Events loading={this.state.loading} events={this.state.events} />}
+            {this.state.location ? (
+              <Events loading={this.state.loading} events={this.state.events} />
+            ) : (
+              <Container>
+                <Row>
+                  <Col align="center">
+                    <h2>Please enter a location....</h2>
+                  </Col>
+                </Row>
+              </Container>
+            )}
+            {/* {this.state.loading && <Spinner />} */}
+
             {/* <DetailsPage path=""></DetailsPage> */}
             {/* <NucleoIcons /> */}
             {/* <Typography /> */}

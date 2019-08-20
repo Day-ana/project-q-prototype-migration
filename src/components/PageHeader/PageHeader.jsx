@@ -35,6 +35,11 @@ import SearchEvents from "../../views/custom/events/SearchEvents";
 
 const PageHeader = props => {
   const searchEvents = props.searchEvents;
+  const location = props.location;
+  const keyword = props.keyword;
+
+  // console.log(keyword);
+
   return (
     <div className="page-header header-filter">
       <div className="squares square1" />
@@ -49,11 +54,14 @@ const PageHeader = props => {
           <Row>
             <Col>
               <h1 className="h1-seo">Queeery</h1>
-              <h3 className="d-none d-sm-block">A query for queers.</h3>
+              <h4 className="d-none d-sm-block">
+                Searching for <span className="text-info">{keyword}&nbsp;</span>{" "}
+                events in
+              </h4>
+              <h3 className="text-danger">{location}</h3>
             </Col>
           </Row>
           <Row>
-            {/* {console.log(props)} */}
             <Col>
               <SearchEvents props={props} searchEvents={searchEvents} />
             </Col>

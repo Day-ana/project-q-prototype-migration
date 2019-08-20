@@ -323,7 +323,6 @@ class DetailsPage extends React.Component {
                     {description && description.text}
                   </p>
                   <SimpleMap mapInfo={venue} />
-
                   <div className="btn-wrapper pt-3">
                     <Button
                       className="btn-simple"
