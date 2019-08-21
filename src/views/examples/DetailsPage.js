@@ -148,7 +148,6 @@ class DetailsPage extends React.Component {
     const { venue } = this.state.locationInfo;
     let date;
     let time;
-    let price;
     // const date = new Date(start.local).toDateString();
     // let time = new Date(start.local).toLocaleTimeString();
     // // if length is 10 convert to american time zone
@@ -156,9 +155,6 @@ class DetailsPage extends React.Component {
     // if (time.length === 10) {
     //   time = time.slice(0, 4) + " " + time.slice(-2);
     // }
-
-    // console.log(start.local);
-    // console.log(start && start.local.toDateString());
 
     if (this.state.loading)
       return (
@@ -176,17 +172,12 @@ class DetailsPage extends React.Component {
       time = new Date(start.local).toLocaleTimeString();
     }
 
-    // if (ticket_availability) {
-    //   price = ticket_availability.minimum_ticket_price.display;
-    // }
-
-    // console.log(date, time, price);
     return (
       <>
         <ExamplesNavbar />
         <div className="wrapper">
           <div className="page-header">
-            <img
+            {/* <img
               alt="..."
               className="dots"
               src={require("assets/img/dots.png")}
@@ -195,7 +186,7 @@ class DetailsPage extends React.Component {
               alt="..."
               className="path"
               src={require("assets/img/path4.png")}
-            />
+            /> */}
             <Container className="align-items-center">
               <Row className="details-height">
                 <Col lg="6" md="6">
@@ -294,7 +285,11 @@ class DetailsPage extends React.Component {
                             <div className="description">
                               <p style={{ margin: "25px 7px" }}>
                                 {/* Starting @ {price} */}
-                                Starting @ XX
+                                Starting @{" "}
+                                {ticket_availability.minimum_ticket_price
+                                  ? ticket_availability.minimum_ticket_price
+                                      .display
+                                  : "$0"}
                               </p>
                               <Button
                                 color="danger"

@@ -21,6 +21,7 @@ import React from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.jsx";
 import PageHeader from "components/PageHeader/PageHeader.jsx";
 import Footer from "components/Footer/Footer.jsx";
+import PropTypes from "prop-types";
 
 // sections for this page/view
 import Basics from "views/IndexSections/Basics.jsx";
@@ -42,6 +43,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // import Navbar from "../views/custom/layout/Navbar";
 import Events from "../views/custom/events/Events";
+
 import Spinner from "../views/custom/layout/Spinner";
 // import Event from "../views/custom/events/Event";
 // import Alert from "../views/custom/layout/Alert";
@@ -61,9 +63,15 @@ class Index extends React.Component {
       isFree: false
     };
   }
+
+  static propTypes = {
+    searchEvents: PropTypes.func.isRequired
+  };
   // Seach events needed to activate
   async componentWillMount() {
     document.body.classList.toggle("index-page");
+
+    //For testing purposes - remove location and comment code for production
     this.searchEvents(
       this.state.location,
       this.state.keyword,
@@ -85,6 +93,17 @@ class Index extends React.Component {
       keyword: keyword,
       within: within
     });
+
+    this.scrollAfterSearch();
+  };
+
+  //Scroll to events section after a seach has been submitted
+  scrollAfterSearch = () => {
+    if (!this.state.loading) {
+      document
+        .getElementById("events-container")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   };
 
   componentWillUnmount() {
@@ -102,25 +121,32 @@ class Index extends React.Component {
             keyword={this.state.keyword}
             props={this.state}
           />
-          <div className="main">
-            {this.state.location ? (
-              <Events loading={this.state.loading} events={this.state.events} />
-            ) : (
-              <Container>
-                <Row>
-                  <Col align="center">
-                    <h2>Please enter a location....</h2>
-                  </Col>
-                </Row>
-              </Container>
-            )}
-            {/* {this.state.loading && <Spinner />} */}
-
-            {/* <DetailsPage path=""></DetailsPage> */}
-            {/* <NucleoIcons /> */}
-            {/* <Typography /> */}
-            {/* <Basics /> */}
-            {/* <Basics />
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            <div className="main">
+              {this.state.location ? (
+                <Events
+                  loading={this.state.loading}
+                  events={this.state.events}
+                  // id="events-container"
+                />
+              ) : (
+                <Container>
+                  <Row>
+                    <Col align="center">
+                      <h2>Please enter a location....</h2>
+                    </Col>
+                  </Row>
+                </Container>
+              )}
+              <Navbars />
+              {/* {this.state.loading && <Spinner />} */}
+              {/* <DetailsPage path=""></DetailsPage> */}
+              {/* <NucleoIcons /> */}
+              {/* <Typography /> */}
+              {/* <Basics /> */}
+              {/* <Basics />
             <Navbars />
             <Tabs />
             <Pagination />
@@ -131,7 +157,8 @@ class Index extends React.Component {
             <Signup />
             <Examples />
             <Download /> */}
-          </div>
+            </div>
+          )}
           <Footer />
         </div>
       </>

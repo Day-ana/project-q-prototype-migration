@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+import PropTypes from "prop-types";
 
 const styled = {
   border: "1px solid red",
@@ -22,19 +23,24 @@ class SimpleMap extends Component {
     };
   }
 
+  static propTypes = {
+    center: PropTypes.object.isRequired
+  };
+
   render() {
     const { longitude, latitude } = this.props.mapInfo;
     const center = { lat: latitude, lng: longitude };
     // Important! Always set the container height explicitly
-    console.log(center);
     return (
       <div style={{ height: "40vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
-            key: ""
+            // key: process.env.QMAPS_API_KEY
+            //REMOVE KEY When Committing
+            key: "AIzaSyD49pVI8AdtxqNDZkRujk8yTbzFKwuKJIc"
           }}
           defaultCenter={this.state.center}
-          // center={center}
+          // center={this.props ? center : this.state.center}
           defaultZoom={this.state.zoom}
         >
           <AnyReactComponent

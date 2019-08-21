@@ -28,7 +28,7 @@ const SearchEvents = props => {
   // console.log(props.props.props.keyword);
   // const { keyword, loading, location, within } = props.props;
 
-  const [location, setLocation] = useState("Oakland");
+  const [location, setLocation] = useState("");
   const [within, setWithin] = useState("50");
   const [keyword, setKeyword] = useState("Queer");
   const [loading, setLoading] = useState(null);
@@ -40,7 +40,8 @@ const SearchEvents = props => {
     } else {
       console.log(location, keyword, within);
       props.searchEvents(location, keyword, within);
-      scrollAfterSearch();
+      // Set location after submit
+      // setLocation("");
     }
   };
 
@@ -57,16 +58,6 @@ const SearchEvents = props => {
   };
 
   const onChange = e => setLocation(e.target.value);
-
-  //Scroll to events section after a seach has been submitted
-  const scrollAfterSearch = () => {
-    if (!loading) {
-      document
-        .getElementById("events-container")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-    setLoading(false);
-  };
 
   return (
     <div className="search">
@@ -87,12 +78,7 @@ const SearchEvents = props => {
           /> */}
           </Col>
           <Col sm="4">
-            <Button
-              color="primary"
-              value="search"
-              type="submit"
-              onSubmit={scrollAfterSearch}
-            >
+            <Button color="primary" value="search" type="submit">
               Queeery
             </Button>
           </Col>

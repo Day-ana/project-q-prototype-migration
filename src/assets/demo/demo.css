@@ -1,4 +1,11 @@
 /* //Queeery Custom  */
+.main-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  padding: 20px 30px;
+  /* box-shadow: -1px -3px 19px #ff019740; */
+}
 
 .details-spinner {
   /* margin: 50%; */
@@ -355,6 +362,16 @@
   .fixed-section.affix {
     position: relative;
     margin-bottom: 100px;
+  }
+  .main-layout {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  }
+  .q-event-item {
+    border: none;
+    border-bottom: 1px solid rgba(255, 1, 151, 0.22);
+    /* margin: 0 -31px 0; */
   }
 }
 
