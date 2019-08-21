@@ -35,8 +35,10 @@ import SearchEvents from "../../views/custom/events/SearchEvents";
 
 const PageHeader = props => {
   const searchEvents = props.searchEvents;
+  const clearEvents = props.clearEvents;
   const location = props.location;
   const keyword = props.keyword;
+  const setAlert = props.setAlert;
 
   // console.log(keyword);
 
@@ -63,7 +65,12 @@ const PageHeader = props => {
           </Row>
           <Row>
             <Col>
-              <SearchEvents props={props} searchEvents={searchEvents} />
+              <SearchEvents
+                props={props}
+                clearEvents={clearEvents}
+                searchEvents={searchEvents}
+                setAlert={setAlert}
+              />
             </Col>
           </Row>
         </div>

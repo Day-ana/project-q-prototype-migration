@@ -36,7 +36,7 @@ import Signup from "views/IndexSections/Signup.jsx";
 import Examples from "views/IndexSections/Examples.jsx";
 import Download from "views/IndexSections/Download.jsx";
 
-import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { Container, Row, Col, Nav, NavItem, NavLink, Alert } from "reactstrap";
 
 // Queeery original routing //TODO check current template routing
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -45,8 +45,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Events from "../views/custom/events/Events";
 
 import Spinner from "../views/custom/layout/Spinner";
-// import Event from "../views/custom/events/Event";
 // import Alert from "../views/custom/layout/Alert";
+
+// import Event from "../views/custom/events/Event";
 // import About from "../views/custom/pages/About";
 import axios from "axios";
 
@@ -60,7 +61,8 @@ class Index extends React.Component {
       location: "Oakland",
       keyword: "Queer",
       within: 50,
-      isFree: false
+      isFree: false,
+      alert: null
     };
   }
 
@@ -110,22 +112,40 @@ class Index extends React.Component {
     document.body.classList.toggle("index-page");
   }
 
+  clearEvents = () => {
+    this.setState({ events: {}, loading: false });
+  };
+
+  setAlert = (msg, type) => {
+    this.setState({ alert: { msg: msg, type: type } });
+    setTimeout(() => this.setState({ alert: null }), 5000);
+  };
+
   render() {
     return (
       <>
         <IndexNavbar />
         <div className="wrapper">
+          {/* <Alert alert={this.state.alert} /> */}
           <PageHeader
             searchEvents={this.searchEvents}
+            clearEvents={this.clearEvents}
+            setAlert={this.setAlert}
             location={this.state.location}
             keyword={this.state.keyword}
             props={this.state}
           />
+          {this.state.alert ? (
+            <Alert className="hovering-alert" color={this.state.alert.type}>
+              {this.state.alert.msg}
+            </Alert>
+          ) : null}
+
           {this.state.loading ? (
             <Spinner />
           ) : (
             <div className="main">
-              {this.state.location ? (
+              {this.state.events ? (
                 <Events
                   loading={this.state.loading}
                   events={this.state.events}

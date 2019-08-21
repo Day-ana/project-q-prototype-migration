@@ -35,9 +35,8 @@ class SimpleMap extends Component {
       <div style={{ height: "40vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
-            // key: process.env.QMAPS_API_KEY
+            key: process.env.QMAPS_API_KEY
             //REMOVE KEY When Committing
-            key: "AIzaSyD49pVI8AdtxqNDZkRujk8yTbzFKwuKJIc"
           }}
           defaultCenter={this.state.center}
           // center={this.props ? center : this.state.center}

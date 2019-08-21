@@ -23,6 +23,13 @@
 
   background: #d550d712;
 }
+.hovering-alert {
+  position: absolute;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.2857rem;
+  top: 100px;
+  right: 40px;
+}
 /* Loading Spinner */
 
 .spinner {
@@ -372,6 +379,10 @@
     border: none;
     border-bottom: 1px solid rgba(255, 1, 151, 0.22);
     /* margin: 0 -31px 0; */
+  }
+  .hovering-alert {
+    top: 140px;
+    left: 24%;
   }
 }
 

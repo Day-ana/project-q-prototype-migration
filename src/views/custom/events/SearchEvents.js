@@ -20,13 +20,7 @@ import Switch from "react-bootstrap-switch";
 // const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-
   const drilledKeyWord = props.props.props.keyword;
-
-  // console.log(keyWordProp);
-
-  // console.log(props.props.props.keyword);
-  // const { keyword, loading, location, within } = props.props;
 
   const [location, setLocation] = useState("");
   const [within, setWithin] = useState("50");
@@ -36,12 +30,10 @@ const SearchEvents = props => {
   const onSubmit = e => {
     e.preventDefault();
     if (location === "") {
-      // setAlert("Please enter a Location", "light");
+      props.setAlert("Please enter a Location", "danger");
     } else {
       console.log(location, keyword, within);
       props.searchEvents(location, keyword, within);
-      // Set location after submit
-      // setLocation("");
     }
   };
 
@@ -55,6 +47,11 @@ const SearchEvents = props => {
     e.preventDefault();
     console.log(e.target.value);
     setKeyword(e.target.value);
+  };
+
+  const clearEvents = e => {
+    e.preventDefault();
+    props.clearEvents();
   };
 
   const onChange = e => setLocation(e.target.value);
@@ -102,11 +99,9 @@ const SearchEvents = props => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* {showClear && (
-              <button className="btn btn-light btn-block" onClick={clearEvents}>
-                Clear
-              </button>
-            )}  */}
+            <button className="btn btn-light btn-block" onClick={clearEvents}>
+              Clear
+            </button>
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>
@@ -130,9 +125,9 @@ const SearchEvents = props => {
   );
 };
 SearchEvents.propTypes = {
-  clearEvents: PropTypes.func.isRequired,
+  // clearEvents: PropTypes.func.isRequired,
+  // showClear: PropTypes.bool.isRequired,
   searchEvents: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
   setAlert: PropTypes.func.isRequired
 };
 
