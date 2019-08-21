@@ -20,15 +20,9 @@ import Switch from "react-bootstrap-switch";
 // const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-
   const drilledKeyWord = props.props.props.keyword;
 
-  // console.log(keyWordProp);
-
-  // console.log(props.props.props.keyword);
-  // const { keyword, loading, location, within } = props.props;
-
-  const [location, setLocation] = useState("Oakland");
+  const [location, setLocation] = useState("");
   const [within, setWithin] = useState("50");
   const [keyword, setKeyword] = useState("Queer");
   const [loading, setLoading] = useState(null);
@@ -36,11 +30,10 @@ const SearchEvents = props => {
   const onSubmit = e => {
     e.preventDefault();
     if (location === "") {
-      // setAlert("Please enter a Location", "light");
+      props.setAlert("Please enter a Location", "danger");
     } else {
       console.log(location, keyword, within);
       props.searchEvents(location, keyword, within);
-      scrollAfterSearch();
     }
   };
 
@@ -56,17 +49,12 @@ const SearchEvents = props => {
     setKeyword(e.target.value);
   };
 
-  const onChange = e => setLocation(e.target.value);
-
-  //Scroll to events section after a seach has been submitted
-  const scrollAfterSearch = () => {
-    if (!loading) {
-      document
-        .getElementById("events-container")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-    setLoading(false);
+  const clearEvents = e => {
+    e.preventDefault();
+    props.clearEvents();
   };
+
+  const onChange = e => setLocation(e.target.value);
 
   return (
     <div className="search">
@@ -87,12 +75,7 @@ const SearchEvents = props => {
           /> */}
           </Col>
           <Col sm="4">
-            <Button
-              color="primary"
-              value="search"
-              type="submit"
-              onSubmit={scrollAfterSearch}
-            >
+            <Button color="primary" value="search" type="submit">
               Queeery
             </Button>
           </Col>
@@ -116,11 +99,9 @@ const SearchEvents = props => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* {showClear && (
-              <button className="btn btn-light btn-block" onClick={clearEvents}>
-                Clear
-              </button>
-            )}  */}
+            <button className="btn btn-light btn-block" onClick={clearEvents}>
+              Clear
+            </button>
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>
@@ -144,9 +125,9 @@ const SearchEvents = props => {
   );
 };
 SearchEvents.propTypes = {
-  clearEvents: PropTypes.func.isRequired,
+  // clearEvents: PropTypes.func.isRequired,
+  // showClear: PropTypes.bool.isRequired,
   searchEvents: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
   setAlert: PropTypes.func.isRequired
 };
 
