@@ -86,6 +86,7 @@ const Details = props => {
 
       setEventDetails(resEventDetails.data);
       setLocationDetails(resMapDetails.data);
+      scrollAfterLoad();
       setLoading(false);
     };
 
@@ -100,7 +101,8 @@ const Details = props => {
         ps = new PerfectScrollbar(tables[i]);
       }
     }
-    document.body.classList.toggle("profile-page");
+    document.body.classList.remove("index-page");
+    document.body.classList.add("profile-page");
     return () => {
       // Needed for possible cleanup
       // componentWillUnmount
@@ -109,9 +111,16 @@ const Details = props => {
         document.documentElement.className += " perfect-scrollbar-off";
         document.documentElement.classList.remove("perfect-scrollbar-on");
       }
-      document.body.classList.toggle("profile-page");
     };
   }, []);
+
+  const scrollAfterLoad = () => {
+    if (!loading) {
+      document
+        .getElementById("details-container")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
 
   //   const date = new Date(start.local).toDateString();
   //   let time = new Date(start.local).toLocaleTimeString();
@@ -126,7 +135,7 @@ const Details = props => {
 
   if (loading)
     return (
-      <Container className="align-items-center">
+      <Container className="align-items-center" id="details-container">
         <Row>
           <Col className="details-spinner">
             <Spinner />

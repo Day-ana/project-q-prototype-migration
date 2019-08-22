@@ -23,6 +23,7 @@ import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss?v=1.0.0";
 import "assets/demo/demo.css";
 
+import App from "views/App.js";
 import Index from "views/Index.jsx";
 import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
@@ -33,7 +34,7 @@ import Details from "views/examples/Details.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/components" render={props => <Index {...props} />} />
+      <Route path="/components" render={props => <App {...props} />} />
       <Route
         path="/landing-page"
         render={props => <LandingPage {...props} />}

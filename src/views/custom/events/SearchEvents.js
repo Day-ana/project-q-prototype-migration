@@ -17,15 +17,14 @@ import {
 // react plugin used to create switch buttons
 import Switch from "react-bootstrap-switch";
 
-// const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-  // const drilledKeyWord = props.props.props.keyword;
 
-  const [location, setLocation] = useState("");
-  const [within, setWithin] = useState("50");
-  const [keyword, setKeyword] = useState("Queer");
-  const [loading, setLoading] = useState(null);
+  //Single Source of truth FTW
+  const [location, setLocation] = useState(props.location);
+  const [within, setWithin] = useState(props.within);
+  const [keyword, setKeyword] = useState(props.keyword);
+  // const [loading, setLoading] = useState(null);
 
   const onSubmit = e => {
     e.preventDefault();

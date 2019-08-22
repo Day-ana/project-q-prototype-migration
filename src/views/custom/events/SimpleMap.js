@@ -20,7 +20,7 @@ class SimpleMap extends Component {
         lat: 37.80525789999999,
         lng: -122.27110449999998
       },
-      zoom: 11
+      zoom: 12
     };
     if (venue) console.log(venue.longitude);
     if (venue) console.log(venue.latitude);
@@ -29,6 +29,7 @@ class SimpleMap extends Component {
   componentDidMount() {}
 
   render() {
+    const venue = this.props.venue;
     // if (!this.props.venue.latitude && !this.props.venue.longitude)
     //   return console.log("hello");
     if (this.props)
