@@ -20,7 +20,7 @@ import Switch from "react-bootstrap-switch";
 // const SearchEvents = ({ callSearchEvents, showClear, clearEvents, setAlert }) ///PREVIOUS
 const SearchEvents = props => {
   //Set Default location/text for testing
-  const drilledKeyWord = props.props.props.keyword;
+  // const drilledKeyWord = props.props.props.keyword;
 
   const [location, setLocation] = useState("");
   const [within, setWithin] = useState("50");
@@ -99,9 +99,9 @@ const SearchEvents = props => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            <button className="btn btn-light btn-block" onClick={clearEvents}>
+            {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
               Clear
-            </button>
+            </button> */}
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>
@@ -113,11 +113,11 @@ const SearchEvents = props => {
               onText=""
             />
             <br />
-            {/* {showClear && (
-              <button className="btn btn-light btn-block" onClick={clearEvents}>
-                Clear
-              </button>
-            )} */}
+            {/* {showClear && ( */}
+            {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
+              Clear
+            </button> */}
+            {/* )} */}
           </Col>
         </Row>
       </form>
@@ -127,7 +127,7 @@ const SearchEvents = props => {
 SearchEvents.propTypes = {
   // clearEvents: PropTypes.func.isRequired,
   // showClear: PropTypes.bool.isRequired,
-  searchEvents: PropTypes.func.isRequired,
+  // searchEvents: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired
 };
 

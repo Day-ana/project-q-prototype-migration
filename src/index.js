@@ -28,6 +28,7 @@ import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
 import ProfilePage from "views/examples/ProfilePage.jsx";
 import DetailsPage from "views/examples/DetailsPage.js";
+import Details from "views/examples/Details.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -45,6 +46,7 @@ ReactDOM.render(
         path="/profile-page"
         render={props => <ProfilePage {...props} />}
       />
+      <Route path="/details/:id" render={props => <Details {...props} />} />
       <Route
         path="/details-page/:id"
         render={props => <DetailsPage {...props} />}
