@@ -56,7 +56,7 @@ const App = () => {
   const [events, setEvents] = useState({});
   const [location, setLocation] = useState("Oakland");
   const [loading, setLoading] = useState(false);
-  const [keyword, setKeyword] = useState("LGBT");
+  const [keyword, setKeyword] = useState("Queer");
   const [within, setWithin] = useState(50);
   const [alert, setAlert] = useState(null);
   const [isFree, setIsFree] = useState(false);
@@ -119,11 +119,10 @@ const App = () => {
   };
 
   const setAlertMsg = (msg, type) => {
-    setAlert({ alert: { msg: msg, type: type } });
-    setTimeout(() => setAlert({ alert: null }), 5000);
+    setAlert({ msg: msg, type: type });
+    setTimeout(() => setAlert(null), 10000);
   };
 
-  console.log(events.events);
   return (
     <>
       <IndexNavbar />
