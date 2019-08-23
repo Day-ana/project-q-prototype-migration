@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
+import EventContext from "../../../context/eventbrite/eventContext";
 
 import {
   Button,
@@ -18,28 +19,28 @@ import {
 import Switch from "react-bootstrap-switch";
 
 const SearchEvents = props => {
+  const eventContext = useContext(EventContext);
+  const { location, within, keyword } = eventContext;
   //Set Default location/text for testing
 
-  //Single Source of truth FTW
-  const [location, setLocation] = useState(props.location);
-  const [within, setWithin] = useState(props.within);
-  const [keyword, setKeyword] = useState(props.keyword);
-  // const [loading, setLoading] = useState(null);
+  // //Single Source of truth FTW
+  const [locationState, setLocation] = useState(location);
+  const [withinState, setWithin] = useState(within);
+  const [keywordState, setKeyword] = useState(keyword);
 
   const onSubmit = e => {
     e.preventDefault();
     if (location === "") {
-      props.setAlert("Please enter a Location", "danger");
+      eventContext.setAlert("Please enter a Location", "danger");
     } else {
-      console.log(location, keyword, within);
-      props.searchEvents(location, keyword, within);
+      eventContext.searchEvents(location, keyword, within);
     }
   };
 
   const onSelectRange = e => {
     e.preventDefault();
     console.log(e.target.value);
-    setWithin(e.target.value);
+    eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
@@ -50,7 +51,7 @@ const SearchEvents = props => {
 
   const clearEvents = e => {
     e.preventDefault();
-    props.clearEvents();
+    // props.clearEvents();
   };
 
   const onChange = e => setLocation(e.target.value);

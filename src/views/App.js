@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.jsx";
@@ -43,59 +43,43 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // import Navbar from "../views/custom/layout/Navbar";
 import Events from "./custom/events/Events";
-
 import Spinner from "./custom/layout/Spinner";
-// import Alert from "../views/custom/layout/Alert";
-
-// import Event from "../views/custom/events/Event";
 // import About from "../views/custom/pages/About";
 import axios from "axios";
-// import { setupMaster } from "cluster";
+import EventContext from "context/eventbrite/eventContext";
 
 const App = () => {
-  const [events, setEvents] = useState({});
+  const eventContext = useContext(EventContext);
+
+  const { events, loading } = eventContext;
+
+  console.log(events);
+  console.log(loading);
+
   const [location, setLocation] = useState("Oakland");
-  const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("Queer");
-  const [within, setWithin] = useState(50);
-  const [alert, setAlert] = useState(null);
-  const [isFree, setIsFree] = useState(false);
+  // const [within, setWithin] = useState(50);
+  // const [alert, setAlert] = useState(null);
+  // const [isFree, setIsFree] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await axios.get(
-        `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${
-          process.env.REACT_APP_EVENTBRITE_CLIENT_ID
-        }`
-      );
-      setEvents(res.data);
-      setLoading(false);
-      scrollAfterSearch();
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const res = await axios.get(
+    //     `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${
+    //       process.env.REACT_APP_EVENTBRITE_CLIENT_ID
+    //     }`
+    //   );
+    //   setEvents(res.data);
+    //   setLoading(false);
+    //   scrollAfterSearch();
+    // };
+    // fetchData();
 
     //Needed for back button bug
     document.body.classList.remove("profile-page");
     document.body.classList.add("index-page");
     // Needeed for Nav layout tings
   }, []);
-
-  const getEvents = async (location, keyword, within) => {
-    setLoading(true);
-
-    const res = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${
-        process.env.REACT_APP_EVENTBRITE_CLIENT_ID
-      }`
-    );
-    setEvents(res.data);
-    setLocation(location);
-    setWithin(within);
-    setKeyword(keyword);
-    setLoading(false);
-    scrollAfterSearch();
-  };
 
   //Scroll to events section after a seach has been submitted
   const scrollAfterSearch = () => {
@@ -118,23 +102,15 @@ const App = () => {
     this.setState({ events: {}, loading: false });
   };
 
-  const setAlertMsg = (msg, type) => {
-    setAlert({ msg: msg, type: type });
-    setTimeout(() => setAlert(null), 10000);
-  };
-
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
         {/* <Alert alert={this.state.alert} /> */}
         <PageHeader
-          searchEvents={getEvents}
+          // searchEvents={getEvents}
           clearEvents={clearEvents}
-          setAlert={setAlertMsg}
-          location={location}
-          keyword={keyword}
-          within={within}
+          // setAlert={setAlertMsg}
         />
         {alert ? (
           <Alert className="hovering-alert" color={alert.type}>
@@ -155,7 +131,7 @@ const App = () => {
                 </Row>
               </Container>
             ) : (
-              <Events loading={loading} events={events} id="events-container" />
+              <Events id="events-container" />
             )}
             <Navbars />
             {/* {loading && <Spinner />} */}

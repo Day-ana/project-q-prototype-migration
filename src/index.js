@@ -30,30 +30,33 @@ import RegisterPage from "views/examples/RegisterPage.jsx";
 import ProfilePage from "views/examples/ProfilePage.jsx";
 import DetailsPage from "views/examples/DetailsPage.js";
 import Details from "views/examples/Details.js";
+import EventState from "context/eventbrite/EventState";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path="/components" render={props => <App {...props} />} />
-      <Route
-        path="/landing-page"
-        render={props => <LandingPage {...props} />}
-      />
-      <Route
-        path="/register-page"
-        render={props => <RegisterPage {...props} />}
-      />
-      <Route
-        path="/profile-page"
-        render={props => <ProfilePage {...props} />}
-      />
-      <Route path="/details/:id" render={props => <Details {...props} />} />
-      <Route
-        path="/details-page/:id"
-        render={props => <DetailsPage {...props} />}
-      />
-      <Redirect from="/" to="/components" />
-    </Switch>
-  </BrowserRouter>,
+  <EventState>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/components" render={props => <App {...props} />} />
+        <Route
+          path="/landing-page"
+          render={props => <LandingPage {...props} />}
+        />
+        <Route
+          path="/register-page"
+          render={props => <RegisterPage {...props} />}
+        />
+        <Route
+          path="/profile-page"
+          render={props => <ProfilePage {...props} />}
+        />
+        <Route path="/details/:id" render={props => <Details {...props} />} />
+        <Route
+          path="/details-page/:id"
+          render={props => <DetailsPage {...props} />}
+        />
+        <Redirect from="/" to="/components" />
+      </Switch>
+    </BrowserRouter>
+  </EventState>,
   document.getElementById("root")
 );
