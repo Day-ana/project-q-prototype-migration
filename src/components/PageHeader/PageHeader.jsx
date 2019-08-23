@@ -37,6 +37,7 @@ const PageHeader = props => {
   const searchEvents = props.searchEvents;
   const clearEvents = props.clearEvents;
   const location = props.location;
+  const within = props.within;
   const keyword = props.keyword;
   const setAlert = props.setAlert;
 
@@ -60,13 +61,16 @@ const PageHeader = props => {
                 Searching for <span className="text-info">{keyword}&nbsp;</span>{" "}
                 events in
               </h4>
-              <h3 className="text-danger">{location}</h3>
+              <h3>
+                <span className="text-danger">{location}</span> within
+                <span className="text-warning"> {within}</span> miles
+              </h3>
             </Col>
           </Row>
           <Row>
             <Col>
               <SearchEvents
-                props={props}
+                {...props}
                 clearEvents={clearEvents}
                 searchEvents={searchEvents}
                 setAlert={setAlert}

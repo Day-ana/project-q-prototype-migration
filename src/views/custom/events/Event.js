@@ -1,58 +1,110 @@
-import React, { Fragment, useEffect } from "react";
-import Spinner from "../layout/Spinner";
+import React, { Component, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Container, Row, Col, Nav, NavItem, NavLink, Button } from "reactstrap";
 
-const Event = ({ event, loading, getEvent, match }) => {
-  useEffect(() => {
-    getEvent(match.params.id);
-    //mimic componentDidMount with empty brackets[]
-    //eslint-disable-next-line
-  }, []);
+import "assets/css/nucleo-icons.css";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-  const { logo, url, id, name, locale, is_free, description } = event;
+const Event = ({ event }) => {
+  const { name, description, start, logo, id, url, is_free } = event;
 
-  if (loading) return <Spinner />;
+  const date = new Date(start.local).toDateString();
+  let time = new Date(start.local).toLocaleTimeString();
+  // if length is 10 convert to american time zone
+  // otherwise .toLocaleTimeString() will do for now
+  if (time.length === 10) {
+    time = time.slice(0, 4) + " " + time.slice(-2);
+  }
+
+  let defaultImg = "https://picsum.photos/200/200/?random";
+  let imgUrl = logo;
+  if (imgUrl !== null) {
+    imgUrl = imgUrl.url;
+  } else {
+    imgUrl = defaultImg;
+  }
+
   return (
-    <Fragment>
-      {name && <h2 style={{ marginBottom: "40px" }}>{name.text}</h2>}
-      <Link to="/" className="btn btn-dark">
-        Back
-      </Link>
-      Free:{" "}
-      {is_free ? (
-        <i className="fas fa-check text-success" />
-      ) : (
-        <i className="fas fa-times-circle text-danger" />
-      )}
-      <div className="grid-2">
-        <div className="card">
-          {logo && (
-            <img src={logo.original.url} alt="" style={{ width: "460px" }} />
-          )}
+    <Col className="q-event-item">
+      <Col>
+        <div className="space-20" />
+        <small className="d-block primary text-uppercase font-weight-bold mb-4">
+          Q
+        </small>{" "}
+      </Col>
+      <Col>
+        <h3
+          className="text-primary"
+          style={{
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "wrap",
+            width: "320px",
+            height: "120px"
+          }}
+        >
+          {name.text}
+        </h3>
+        <h3 color="Danger">{date.toString()}</h3>
+        <h4>{start.local}</h4>
+        <h4>{time}</h4>
+        <h5>{id}</h5>
+      </Col>
 
-          {url && (
-            <a
+      <Col>
+        <img alt="..." className="img-fluid rounded shadow-lg" src={imgUrl} />
+      </Col>
+      <Col>
+        <div className="typography-line" style={{ paddingLeft: "0" }}>
+          <p>Description:</p>
+          <p
+            className="text-muted"
+            style={{
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              maxWidth: "400px"
+            }}
+          >
+            {description.text}
+          </p>
+        </div>
+        <div className="typography-line" />
+      </Col>
+      <Container>
+        <Row>
+          <div className="w-100" />{" "}
+          <Col>
+            <Button
+              color="danger"
               href={url}
               target="_blank"
-              className="btn btn-dark"
               rel="noopener noreferrer"
             >
               Tickets
-            </a>
+            </Button>
+          </Col>{" "}
+          <Col>
+            <Button color="info" tag={Link} to={`/details/${id}`}>
+              More Info
+            </Button>
+          </Col>
+        </Row>
+        <Col>
+          {is_free ? (
+            <i className="tim-icons icon-check-2" style={{ margin: "15px 0" }}>
+              {" "}
+              &nbsp; &nbsp;<span>FREE EVENT</span>{" "}
+            </i>
+          ) : (
+            ""
           )}
-        </div>
-        <div className="grid-2">
-          {description && <p style={{ width: "400px" }}>{description.text}</p>}
-        </div>
-      </div>{" "}
-    </Fragment>
+        </Col>{" "}
+      </Container>
+      <div className="space-20" />
+    </Col>
   );
-};
-Event.propTypes = {
-  loading: PropTypes.bool,
-  event: PropTypes.object.isRequired,
-  getEvent: PropTypes.func.isRequired
 };
 
 export default Event;

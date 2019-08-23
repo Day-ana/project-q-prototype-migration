@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import PropTypes from "prop-types";
 
 const styled = {
   border: "1px solid red",
@@ -14,42 +13,44 @@ const AnyReactComponent = ({ text }) => <div style={styled}>{text}</div>;
 class SimpleMap extends Component {
   constructor(props) {
     super(props);
+    const venue = this.props.venue;
+    // console.log(this.props);
     this.state = {
       center: {
         lat: 37.80525789999999,
         lng: -122.27110449999998
       },
-      zoom: 11
+      zoom: 12
     };
+    if (venue) console.log(venue.longitude);
+    if (venue) console.log(venue.latitude);
   }
 
-  static propTypes = {
-    center: PropTypes.object.isRequired
-  };
+  componentDidMount() {}
 
   render() {
-    const { longitude, latitude } = this.props.mapInfo;
-    const center = { lat: latitude, lng: longitude };
-    // Important! Always set the container height explicitly
-    return (
-      <div style={{ height: "40vh", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{
-            key: process.env.QMAPS_API_KEY
-            //REMOVE KEY When Committing
-          }}
-          defaultCenter={this.state.center}
-          // center={this.props ? center : this.state.center}
-          defaultZoom={this.state.zoom}
-        >
-          <AnyReactComponent
-            lat={latitude}
-            lng={longitude}
-            text="Event Location"
-          />
-        </GoogleMapReact>
-      </div>
-    );
+    const venue = this.props.venue;
+    // if (!this.props.venue.latitude && !this.props.venue.longitude)
+    //   return console.log("hello");
+    if (this.props)
+      return (
+        <div style={{ height: "40vh", width: "100%" }}>
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: "key"
+            }}
+            defaultCenter={this.state.center}
+            center={this.state.center}
+            defaultZoom={this.state.zoom}
+          >
+            <AnyReactComponent
+              lat={this.props.venue && this.props.venue.latitude}
+              lng={this.props.venue && this.props.venue.longitude}
+              text="Event Location"
+            />
+          </GoogleMapReact>
+        </div>
+      );
   }
 }
 // SimpleMap.defaultProps = {

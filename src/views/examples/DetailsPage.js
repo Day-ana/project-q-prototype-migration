@@ -131,6 +131,7 @@ class DetailsPage extends React.Component {
   }
   toggleTabs = (e, stateName, index) => {
     e.preventDefault();
+    console.log(stateName, index);
     this.setState({
       [stateName]: index
     });

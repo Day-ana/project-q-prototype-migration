@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EventItem from "./EventItem";
+import Event from "./Event";
 import Spinner from "../layout/Spinner";
 import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 
@@ -21,7 +22,7 @@ export class Events extends Component {
       <Container id="events-container" className="main-layout">
         {/* {console.log(events)} */}
         {events.events.map(event => (
-          <EventItem event={event} key={event.id} />
+          <Event event={event} key={event.id} />
         ))}
       </Container>
     );
