@@ -8,7 +8,9 @@ import Switch from "react-bootstrap-switch";
 
 const SearchEvents = props => {
   const eventContext = useContext(EventContext);
+  console.log(eventContext);
   const { location, keyword, within } = eventContext;
+  //Set Default location/text for testing
 
   // //Single Source of truth FTW
   // const [locationState, setLocation] = useState("Miami");

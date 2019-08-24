@@ -65,9 +65,9 @@ const App = () => {
       //   `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
       // );
       eventContext.searchEvents(location, keyword, within);
+      scrollAfterSearch();
     };
     fetchData();
-    scrollAfterSearch();
 
     //Needed for back button bug
     document.body.classList.remove("profile-page");

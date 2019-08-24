@@ -18,10 +18,10 @@ import {
 const EventState = props => {
   const initialState = {
     events: [],
-    location: "Miami",
+    location: "New York",
     loading: false,
-    keyword: "Queer",
-    within: 100,
+    keyword: "Lesbian",
+    within: 25,
     alert: null
   };
 

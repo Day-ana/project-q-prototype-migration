@@ -11,7 +11,7 @@ import {
 } from "../types";
 
 export default (state, action) => {
-  console.log(action);
+  console.log(action.payload);
   switch (action.type) {
     case SEARCH_EVENTS:
       return {
@@ -33,11 +33,6 @@ export default (state, action) => {
       return {
         ...state,
         location: action.payload
-      };
-    case SET_KEYWORD:
-      return {
-        ...state,
-        keyword: action.payload
       };
     default:
       return state;

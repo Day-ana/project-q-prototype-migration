@@ -8,9 +8,9 @@ import {
   SET_WITHIN,
   SET_KEYWORD,
   SET_LOCATION,
-  SET_LOADING,
   GET_EVENTS,
   SET_ALERT,
+  SET_LOADING,
   REMOVE_ALERT,
   CLEAR_EVENTS
 } from "../types";
@@ -18,10 +18,10 @@ import {
 const EventState = props => {
   const initialState = {
     events: [],
-    location: "Miami",
+    location: "New York",
     loading: false,
-    keyword: "Queer",
-    within: 100,
+    keyword: "Lesbian",
+    within: 10,
     alert: null
   };
 
@@ -63,8 +63,7 @@ const EventState = props => {
         alert: state.alert,
         searchEvents,
         setWithin,
-        setKeyword,
-        setLocation
+        setKeyword
       }}
     >
       {props.children}

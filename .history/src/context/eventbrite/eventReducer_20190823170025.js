@@ -34,11 +34,6 @@ export default (state, action) => {
         ...state,
         location: action.payload
       };
-    case SET_KEYWORD:
-      return {
-        ...state,
-        keyword: action.payload
-      };
     default:
       return state;
   }

@@ -8,9 +8,9 @@ import {
   SET_WITHIN,
   SET_KEYWORD,
   SET_LOCATION,
-  SET_LOADING,
   GET_EVENTS,
   SET_ALERT,
+  SET_LOADING,
   REMOVE_ALERT,
   CLEAR_EVENTS
 } from "../types";
@@ -18,10 +18,10 @@ import {
 const EventState = props => {
   const initialState = {
     events: [],
-    location: "Miami",
+    location: "New York",
     loading: false,
-    keyword: "Queer",
-    within: 100,
+    keyword: "Lesbian",
+    within: 10,
     alert: null
   };
 
@@ -46,11 +46,10 @@ const EventState = props => {
   };
 
   const setLoading = () => dispatch({ type: SET_LOADING });
-  const setWithin = within => dispatch({ type: SET_WITHIN, payload: within });
-  const setKeyword = keyword =>
-    dispatch({ type: SET_KEYWORD, payload: keyword });
-  const setLocation = location =>
-    dispatch({ type: SET_LOCATION, payload: location });
+  // const setWithin = () => dispatch({ type: SET_WITHIN });
+  const setWithin = () => alert();
+  const setKeyword = () => dispatch({ type: SET_KEYWORD });
+  const setLocation = () => dispatch({ type: SET_LOCATION });
 
   return (
     <EventContext.Provider
@@ -63,8 +62,7 @@ const EventState = props => {
         alert: state.alert,
         searchEvents,
         setWithin,
-        setKeyword,
-        setLocation
+        setKeyword
       }}
     >
       {props.children}

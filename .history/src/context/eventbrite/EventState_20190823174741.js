@@ -20,8 +20,8 @@ const EventState = props => {
     events: [],
     location: "Miami",
     loading: false,
-    keyword: "Queer",
-    within: 100,
+    keyword: "Gay",
+    within: 25,
     alert: null
   };
 

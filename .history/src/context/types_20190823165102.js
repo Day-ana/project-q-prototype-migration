@@ -1,6 +1,6 @@
 export const SEARCH_EVENTS = "SEARCH_EVENTS";
 export const GET_EVENTS = "GET_EVENTS";
-export const SET_LOCATION = "SET_LOCATION,";
+export const SET_lOCATION = "SET_lOCATION,";
 export const SET_WITHIN = "SET_WITHIN";
 export const SET_KEYWORD = "SET_KEYWORD";
 export const GET_EVENT = "GET_EVENT";

@@ -50,7 +50,7 @@ import EventContext from "context/eventbrite/eventContext";
 
 const App = () => {
   const eventContext = useContext(EventContext);
-  const { events, location, keyword, within, loading } = eventContext;
+  const { location, keyword, within } = eventContext;
   console.log(eventContext);
 
   // const [location, setLocation] = useState("Oakland");
@@ -60,14 +60,17 @@ const App = () => {
   // const [isFree, setIsFree] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      // const res = await axios.get(
-      //   `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
-      // );
-      eventContext.searchEvents(location, keyword, within);
-    };
-    fetchData();
-    scrollAfterSearch();
+    // const fetchData = async () => {
+    //   const res = await axios.get(
+    //     `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${
+    //       process.env.REACT_APP_EVENTBRITE_CLIENT_ID
+    //     }`
+    //   );
+    //   setEvents(res.data);
+    //   setLoading(false);
+    //   scrollAfterSearch();
+    // };
+    // fetchData();
 
     //Needed for back button bug
     document.body.classList.remove("profile-page");

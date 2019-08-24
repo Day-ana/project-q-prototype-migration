@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import EventContext from "../../../context/eventbrite/eventContext";
+
 import { Button, Input, Row, Col } from "reactstrap";
 
 // react plugin used to create switch buttons
@@ -8,7 +9,8 @@ import Switch from "react-bootstrap-switch";
 
 const SearchEvents = props => {
   const eventContext = useContext(EventContext);
-  const { location, keyword, within } = eventContext;
+  const { location, within, keyword } = eventContext;
+  //Set Default location/text for testing
 
   // //Single Source of truth FTW
   // const [locationState, setLocation] = useState("Miami");
@@ -24,13 +26,13 @@ const SearchEvents = props => {
 
   const onSelectRange = e => {
     e.preventDefault();
-    // console.log(e.target.value);
+    console.log(e.target.value);
     eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    // console.log(e.target.value);
+    console.log(e.target.value);
     eventContext.setKeyword(e.target.value);
   };
 
@@ -41,7 +43,7 @@ const SearchEvents = props => {
   // const onChange = e => eventContext.setLocation(e.target.value);
   const onChange = e => {
     e.preventDefault();
-    // console.log(e.target.value);
+    console.log(e.target.value);
     updateLocation(e.target.value);
   };
 
