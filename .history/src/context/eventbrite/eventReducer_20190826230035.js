@@ -12,8 +12,9 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case CLEAR_EVENTS:
-      // console.log(action.type);
       return {
+      console.log(action.type);
+
         ...state,
         events: [],
         loading: false

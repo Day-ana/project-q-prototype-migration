@@ -4,7 +4,7 @@ import Event from "./Event";
 import Spinner from "../layout/Spinner";
 import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 import EventContext from "../../../context/eventbrite/eventContext";
-const Events = () => {
+const Events = props => {
   const eventContext = useContext(EventContext);
   const { loading, events } = eventContext;
 

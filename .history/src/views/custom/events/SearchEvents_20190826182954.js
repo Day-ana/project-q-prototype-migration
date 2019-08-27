@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import EventContext from "../../../context/eventbrite/eventContext";
 import { Button, Input, Row, Col } from "reactstrap";
 
@@ -20,13 +20,13 @@ const SearchEvents = () => {
 
   const onSelectRange = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     eventContext.setKeyword(e.target.value);
   };
 
@@ -34,15 +34,20 @@ const SearchEvents = () => {
     eventContext.setLocation(location);
   };
 
-  const clearEvents = () => {
-    eventContext.clearEvents();
-  };
-
+  // const onChange = e => eventContext.setLocation(e.target.value);
   const onChange = e => {
     e.preventDefault();
+    // console.log(e.target.value);
     updateLocation(e.target.value);
   };
 
+  if (eventContext.events) {
+    console.log(eventContext.events.events);
+  }
+  const clearEvents = e => {
+    e.preventDefault();
+    eventContext.clearEvents();
+  };
   return (
     <div className="search">
       <form onSubmit={onSubmit}>
@@ -86,9 +91,12 @@ const SearchEvents = () => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
+            <button
+              className="btn btn-light btn-block"
+              onClick={this.clearEvents()}
+            >
               Clear
-            </button> */}
+            </button>
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>

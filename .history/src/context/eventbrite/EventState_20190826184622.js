@@ -9,10 +9,10 @@ import {
   SET_KEYWORD,
   SET_LOCATION,
   SET_LOADING,
-  CLEAR_EVENTS,
   GET_EVENTS,
   SET_ALERT,
-  REMOVE_ALERT
+  REMOVE_ALERT,
+  CLEAR_EVENTS
 } from "../types";
 
 const EventState = props => {
@@ -44,7 +44,7 @@ const EventState = props => {
   };
 
   const setLoading = () => dispatch({ type: SET_LOADING });
-  const clearEvents = () => dispatch({ type: CLEAR_EVENTS });
+  const clearEvents = () => dispatch({ type: GET_EVENTS });
   const setWithin = within => dispatch({ type: SET_WITHIN, payload: within });
   const setKeyword = keyword =>
     dispatch({ type: SET_KEYWORD, payload: keyword });

@@ -22,8 +22,8 @@ class SimpleMap extends Component {
       },
       zoom: 12
     };
-    // if (venue) console.log(venue.longitude);
-    // if (venue) console.log(venue.latitude);
+    if (venue) console.log(venue.longitude);
+    if (venue) console.log(venue.latitude);
   }
 
   componentDidMount() {}

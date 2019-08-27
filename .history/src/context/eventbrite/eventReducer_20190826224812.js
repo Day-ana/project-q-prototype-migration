@@ -1,6 +1,6 @@
 import {
   SEARCH_EVENTS,
-  SET_WITHIN,
+  // SET_WITHIN,
   SET_KEYWORD,
   SET_LOADING,
   SET_LOCATION,
@@ -10,9 +10,9 @@ import {
 } from "../types";
 
 export default (state, action) => {
+  console.log(action.type);
   switch (action.type) {
     case CLEAR_EVENTS:
-      // console.log(action.type);
       return {
         ...state,
         events: [],

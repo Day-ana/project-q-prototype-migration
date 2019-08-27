@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useContext } from "react";
+import React from "react";
 // import {
 //   Button,
 //   Label,
@@ -32,11 +32,16 @@ import React, { useContext } from "react";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
 import SearchEvents from "../../views/custom/events/SearchEvents";
-import EventContext from "../../context/eventbrite/eventContext";
 
-const PageHeader = () => {
-  const eventContext = useContext(EventContext);
-  const { location, keyword, within } = eventContext;
+const PageHeader = props => {
+  const searchEvents = props.searchEvents;
+  const clearEvents = props.clearEvents;
+  const location = props.location;
+  const within = props.within;
+  const keyword = props.keyword;
+  const setAlert = props.setAlert;
+
+  // console.log(keyword);
 
   return (
     <div className="page-header header-filter">
@@ -64,7 +69,12 @@ const PageHeader = () => {
           </Row>
           <Row>
             <Col>
-              <SearchEvents />
+              <SearchEvents
+                {...props}
+                // clearEvents={clearEvents}
+                // searchEvents={searchEvents}
+                // setAlert={setAlert}
+              />
             </Col>
           </Row>
         </div>

@@ -64,7 +64,12 @@ const PageHeader = () => {
           </Row>
           <Row>
             <Col>
-              <SearchEvents />
+              <SearchEvents
+              // {...props}
+              // clearEvents={clearEven ts}
+              // searchEvents={searchEvents}
+              // setAlert={setAlert}
+              />
             </Col>
           </Row>
         </div>

@@ -26,7 +26,7 @@ const SearchEvents = () => {
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     eventContext.setKeyword(e.target.value);
   };
 
@@ -34,10 +34,7 @@ const SearchEvents = () => {
     eventContext.setLocation(location);
   };
 
-  const clearEvents = () => {
-    eventContext.clearEvents();
-  };
-
+  // const onChange = e => eventContext.setLocation(e.target.value);
   const onChange = e => {
     e.preventDefault();
     updateLocation(e.target.value);
@@ -86,9 +83,12 @@ const SearchEvents = () => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
+            <button
+              className="btn btn-light btn-block"
+              onClick={EventContext.clearEvents}
+            >
               Clear
-            </button> */}
+            </button>
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>

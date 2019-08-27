@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
+import PropTypes from "prop-types";
 import EventContext from "../../../context/eventbrite/eventContext";
 import { Button, Input, Row, Col } from "reactstrap";
-
 // react plugin used to create switch buttons
 import Switch from "react-bootstrap-switch";
 
-const SearchEvents = () => {
+const SearchEvents = props => {
   const eventContext = useContext(EventContext);
   const { location, keyword, within } = eventContext;
+
+  // //Single Source of truth FTW
+  // const [locationState, setLocation] = useState("Miami");
 
   const onSubmit = e => {
     e.preventDefault();
@@ -20,13 +23,13 @@ const SearchEvents = () => {
 
   const onSelectRange = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     eventContext.setKeyword(e.target.value);
   };
 
@@ -34,15 +37,17 @@ const SearchEvents = () => {
     eventContext.setLocation(location);
   };
 
-  const clearEvents = () => {
-    eventContext.clearEvents();
-  };
-
+  // const onChange = e => eventContext.setLocation(e.target.value);
   const onChange = e => {
     e.preventDefault();
+    // console.log(e.target.value);
     updateLocation(e.target.value);
   };
 
+  // const clearEvents = e => {
+  //   e.preventDefault();
+  //   // props.clearEvents();
+  // };
   return (
     <div className="search">
       <form onSubmit={onSubmit}>
@@ -110,6 +115,12 @@ const SearchEvents = () => {
       </form>
     </div>
   );
+};
+SearchEvents.propTypes = {
+  // clearEvents: PropTypes.func.isRequired,
+  // showClear: PropTypes.bool.isRequired,
+  // searchEvents: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired
 };
 
 export default SearchEvents;

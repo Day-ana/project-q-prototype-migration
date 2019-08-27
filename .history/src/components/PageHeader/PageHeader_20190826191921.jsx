@@ -32,7 +32,6 @@ import React, { useContext } from "react";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
 import SearchEvents from "../../views/custom/events/SearchEvents";
-import EventContext from "../../context/eventbrite/eventContext";
 
 const PageHeader = () => {
   const eventContext = useContext(EventContext);
@@ -64,7 +63,12 @@ const PageHeader = () => {
           </Row>
           <Row>
             <Col>
-              <SearchEvents />
+              <SearchEvents
+                {...props}
+                // clearEvents={clearEven ts}
+                // searchEvents={searchEvents}
+                // setAlert={setAlert}
+              />
             </Col>
           </Row>
         </div>

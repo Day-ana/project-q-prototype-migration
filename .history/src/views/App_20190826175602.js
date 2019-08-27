@@ -64,7 +64,7 @@ const App = () => {
       // const res = await axios.get(
       //   `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
       // );
-      // eventContext.searchEvents(location, keyword, within);
+      eventContext.searchEvents(location, keyword, within);
     };
     fetchData();
     scrollAfterSearch();
@@ -92,10 +92,15 @@ const App = () => {
     }
   };
 
+  // const clearEvents = () => {
+  //   this.setState({ events: {}, loading: false });
+  // };
+
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
+        {/* <Alert alert={this.state.alert} /> */}
         <PageHeader />
         {alert ? (
           <Alert className="hovering-alert" color={alert.type}>

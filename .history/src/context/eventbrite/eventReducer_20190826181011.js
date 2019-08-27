@@ -2,22 +2,18 @@ import {
   SEARCH_EVENTS,
   SET_WITHIN,
   SET_KEYWORD,
-  SET_LOADING,
-  SET_LOCATION,
-  CLEAR_EVENTS,
+  GET_EVENTS,
   SET_ALERT,
-  REMOVE_ALERT
+  SET_LOADING,
+  CLEAR_EVENTS.
+  SET_LOCATION,
+  REMOVE_ALERT,
+  CLEAR_EVENTS
 } from "../types";
 
 export default (state, action) => {
+  // console.log(action);
   switch (action.type) {
-    case CLEAR_EVENTS:
-      // console.log(action.type);
-      return {
-        ...state,
-        events: [],
-        loading: false
-      };
     case SEARCH_EVENTS:
       return {
         ...state,
@@ -44,7 +40,11 @@ export default (state, action) => {
         ...state,
         keyword: action.payload
       };
-
+      case CLEAR_EVENTS:
+        return {
+          ...state,
+          keyword: action.payload
+        };
     default:
       return state;
   }

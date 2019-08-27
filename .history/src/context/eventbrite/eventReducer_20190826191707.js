@@ -10,12 +10,12 @@ import {
 } from "../types";
 
 export default (state, action) => {
+  console.log(action.type);
   switch (action.type) {
     case CLEAR_EVENTS:
-      // console.log(action.type);
       return {
         ...state,
-        events: [],
+        events: []
         loading: false
       };
     case SEARCH_EVENTS:

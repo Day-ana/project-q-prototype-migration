@@ -9,10 +9,10 @@ import {
   SET_KEYWORD,
   SET_LOCATION,
   SET_LOADING,
-  CLEAR_EVENTS,
   GET_EVENTS,
   SET_ALERT,
-  REMOVE_ALERT
+  REMOVE_ALERT,
+  CLEAR_EVENTS
 } from "../types";
 
 const EventState = props => {

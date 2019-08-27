@@ -92,10 +92,15 @@ const App = () => {
     }
   };
 
+  // const clearEvents = () => {
+  //   this.setState({ events: {}, loading: false });
+  // };
+
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
+        {/* <Alert alert={this.state.alert} /> */}
         <PageHeader />
         {alert ? (
           <Alert className="hovering-alert" color={alert.type}>

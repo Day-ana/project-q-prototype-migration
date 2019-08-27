@@ -34,8 +34,9 @@ const SearchEvents = () => {
     eventContext.setLocation(location);
   };
 
-  const clearEvents = () => {
-    eventContext.clearEvents();
+  const clearEvents = location => {
+    alert(0);
+    eventContext.clearEvenrts();
   };
 
   const onChange = e => {
@@ -86,9 +87,9 @@ const SearchEvents = () => {
               <option value="lgbt">LGBT</option>
               <option value="gay">gay</option>
             </select>
-            {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
+            <button className="btn btn-light btn-block" onClick={clearEvents}>
               Clear
-            </button> */}
+            </button>
           </Col>
           <Col className="col-sm">
             <p className="category">Is Free?</p>

@@ -45,6 +45,7 @@ const EventState = props => {
 
   const setLoading = () => dispatch({ type: SET_LOADING });
   const clearEvents = () => dispatch({ type: CLEAR_EVENTS });
+  // const clearEvents = () => console.log("hello");
   const setWithin = within => dispatch({ type: SET_WITHIN, payload: within });
   const setKeyword = keyword =>
     dispatch({ type: SET_KEYWORD, payload: keyword });
