@@ -15,8 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useContext } from "react";
 import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -32,12 +31,12 @@ import {
   //   Form,
   //   Input,
   //   FormText,
-  NavItem,
-  NavLink,
-  Nav,
+  // NavItem,
+  // NavLink,
+  // Nav,
   //   Table,
-  TabContent,
-  TabPane,
+  // TabContent,
+  // TabPane,
   Container,
   Row,
   Col
@@ -52,12 +51,12 @@ import SimpleMap from "../custom/events/SimpleMap";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
+import EventContext from "../../context/eventbrite/eventContext";
 
 let ps = null;
 const Details = props => {
-  const [loading, setLoading] = useState(false);
-  const [event, setEventDetails] = useState([]);
-  const [locationInfo, setLocationDetails] = useState([]);
+  const eventContext = useContext(EventContext);
+
   const {
     description,
     name,
@@ -66,32 +65,17 @@ const Details = props => {
     start,
     logo,
     ticket_availability
-  } = event;
+  } = eventContext.eventDetails;
+
+  if (eventContext.eventDetails) {
+    console.log(eventContext.eventDetails);
+  }
+
+  // const [loading, setLoading] = useState(false);
+  // const [event, setEventDetails] = useState([]);
+  // const [locationInfo, setLocationDetails] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const resEventDetails = await axios.get(
-        `https://www.eventbriteapi.com/v3/events/${
-          props.match.params.id
-        }/?expand=ticket_availability&token=${
-          process.env.REACT_APP_EVENTBRITE_CLIENT_ID
-        }`
-      );
-      const resMapDetails = await axios.get(
-        `https://www.eventbriteapi.com/v3/events/${
-          props.match.params.id
-        }/?expand=venue&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
-      );
-
-      setEventDetails(resEventDetails.data);
-      setLocationDetails(resMapDetails.data);
-      scrollAfterLoad();
-      setLoading(false);
-    };
-
-    fetchData();
-
     // Needeed for Nav layout tings
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -112,10 +96,12 @@ const Details = props => {
         document.documentElement.classList.remove("perfect-scrollbar-on");
       }
     };
+    eventContext.getEventDetails(props.match.params.id);
+    // eventContext.getLocationDetails(props.match.params.id);
   }, []);
 
   const scrollAfterLoad = () => {
-    if (!loading) {
+    if (eventContext.loading) {
       document
         .getElementById("details-container")
         .scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -129,11 +115,15 @@ const Details = props => {
   //   if (time.length === 10) {
   //     time = time.slice(0, 4) + " " + time.slice(-2);
   //   }
-  const { venue } = locationInfo;
+  const { venue } = eventContext.locationDetails;
   let date;
   let time;
 
-  if (loading)
+  console.log(eventContext.loading);
+  // if (eventContext.locationDetails.length !== 0)
+  //   console.log(eventContext.locationDetails);
+
+  if (eventContext.loading)
     return (
       <Container className="align-items-center" id="details-container">
         <Row>
@@ -251,7 +241,7 @@ const Details = props => {
                 <p className="details-description text-left">
                   {description && description.text}
                 </p>
-                <SimpleMap venue={venue} />
+                {/* <SimpleMap venue={venue} /> */}
                 <div className="btn-wrapper pt-3">
                   <Button
                     className="btn-simple"
@@ -279,12 +269,5 @@ const Details = props => {
     </>
   );
 };
-
-// Details.propTypes = {
-//   tabs: PropTypes.number.isRequired,
-//   event: PropTypes.array.isRequired,
-//   locationInfo: PropTypes.array.isRequired,
-//   loading: PropTypes.bool.isRequired
-// };
 
 export default Details;

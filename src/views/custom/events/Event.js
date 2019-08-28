@@ -1,10 +1,8 @@
-import React, { Component, useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Nav, NavItem, NavLink, Button } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 
 import "assets/css/nucleo-icons.css";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 const Event = ({ event }) => {
   const { name, description, start, logo, id, url, is_free } = event;

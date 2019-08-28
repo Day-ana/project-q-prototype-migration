@@ -41,8 +41,6 @@ const PageHeader = props => {
   const keyword = props.keyword;
   const setAlert = props.setAlert;
 
-  // console.log(keyword);
-
   return (
     <div className="page-header header-filter">
       <div className="squares square1" />
@@ -69,12 +67,7 @@ const PageHeader = props => {
           </Row>
           <Row>
             <Col>
-              <SearchEvents
-                {...props}
-                // clearEvents={clearEvents}
-                // searchEvents={searchEvents}
-                // setAlert={setAlert}
-              />
+              <SearchEvents {...props} />
             </Col>
           </Row>
         </div>

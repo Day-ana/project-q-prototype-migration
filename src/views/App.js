@@ -15,58 +15,40 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Fragment, useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.jsx";
 import PageHeader from "components/PageHeader/PageHeader.jsx";
 import Footer from "components/Footer/Footer.jsx";
-import PropTypes from "prop-types";
 
 // sections for this page/view
 import Basics from "views/IndexSections/Basics.jsx";
 import Navbars from "views/IndexSections/Navbars.jsx";
-import Tabs from "views/IndexSections/Tabs.jsx";
-import Pagination from "views/IndexSections/Pagination.jsx";
-import Notifications from "views/IndexSections/Notifications.jsx";
-import Typography from "views/IndexSections/Typography.jsx";
-import JavaScript from "views/IndexSections/JavaScript.jsx";
-import NucleoIcons from "views/IndexSections/NucleoIcons.jsx";
-import Signup from "views/IndexSections/Signup.jsx";
-import Examples from "views/IndexSections/Examples.jsx";
-import Download from "views/IndexSections/Download.jsx";
+// import Tabs from "views/IndexSections/Tabs.jsx";
+// import Pagination from "views/IndexSections/Pagination.jsx";
+// import Notifications from "views/IndexSections/Notifications.jsx";
+// import Typography from "views/IndexSections/Typography.jsx";
+// import JavaScript from "views/IndexSections/JavaScript.jsx";
+// import NucleoIcons from "views/IndexSections/NucleoIcons.jsx";
+// import Signup from "views/IndexSections/Signup.jsx";
+// import Examples from "views/IndexSections/Examples.jsx";
+// import Download from "views/IndexSections/Download.jsx";
 
-import { Container, Row, Col, Nav, NavItem, NavLink, Alert } from "reactstrap";
-
-// Queeery original routing //TODO check current template routing
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Container, Row, Col, Alert } from "reactstrap";
 
 // import Navbar from "../views/custom/layout/Navbar";
 import Events from "./custom/events/Events";
 import Spinner from "./custom/layout/Spinner";
 // import About from "../views/custom/pages/About";
-import axios from "axios";
 import EventContext from "context/eventbrite/eventContext";
+import AlertContext from "context/alert/alertContext";
 
 const App = () => {
   const eventContext = useContext(EventContext);
-  const { events, location, keyword, within, loading } = eventContext;
-  // console.log(eventContext);
-
-  // const [location, setLocation] = useState("Oakland");
-  // const [keyword, setKeyword] = useState("Queer");
-  // const [within, setWithin] = useState(50);
-  // const [alert, setAlert] = useState(null);
-  // const [isFree, setIsFree] = useState(false);
+  const { events, loading } = eventContext;
 
   useEffect(() => {
-    const fetchData = async () => {
-      // const res = await axios.get(
-      //   `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
-      // );
-      // eventContext.searchEvents(location, keyword, within);
-    };
-    fetchData();
     scrollAfterSearch();
 
     //Needed for back button bug

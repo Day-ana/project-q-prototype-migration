@@ -5,8 +5,11 @@ import {
   SET_LOADING,
   SET_LOCATION,
   CLEAR_EVENTS,
+  GET_DETAILS,
   SET_ALERT,
-  REMOVE_ALERT
+  REMOVE_ALERT,
+  SET_EVENT_DETAILS,
+  SET_LOCATION_DETAILS
 } from "../types";
 
 export default (state, action) => {
@@ -43,6 +46,18 @@ export default (state, action) => {
       return {
         ...state,
         keyword: action.payload
+      };
+    case SET_EVENT_DETAILS:
+      return {
+        ...state,
+        eventDetails: action.payload,
+        loading: true
+      };
+    case SET_LOCATION_DETAILS:
+      return {
+        ...state,
+        locationDetails: action.payload,
+        loading: false
       };
 
     default:

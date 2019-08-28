@@ -1,12 +1,10 @@
-import React, { Component, useContext } from "react";
-import EventItem from "./EventItem";
+import React, { useContext } from "react";
 import Event from "./Event";
-import Spinner from "../layout/Spinner";
 import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 import EventContext from "../../../context/eventbrite/eventContext";
 const Events = () => {
   const eventContext = useContext(EventContext);
-  const { loading, events } = eventContext;
+  const { events } = eventContext;
 
   return (
     <Container id="events-container" className="main-layout">

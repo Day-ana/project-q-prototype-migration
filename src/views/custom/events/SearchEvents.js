@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import EventContext from "../../../context/eventbrite/eventContext";
+import AlertContext from "../../../context/alert/alertContext";
 import { Button, Input, Row, Col } from "reactstrap";
 
 // react plugin used to create switch buttons
@@ -7,12 +8,13 @@ import Switch from "react-bootstrap-switch";
 
 const SearchEvents = () => {
   const eventContext = useContext(EventContext);
+  const alertContext = useContext(AlertContext);
   const { location, keyword, within } = eventContext;
 
   const onSubmit = e => {
     e.preventDefault();
     if (location === "") {
-      eventContext.setAlert("Please enter a Location", "danger");
+      alertContext.setAlert("Please enter a Location", "danger");
     } else {
       eventContext.searchEvents(location, keyword, within);
     }
