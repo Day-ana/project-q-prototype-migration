@@ -16,7 +16,6 @@
 
 */
 import React, { useEffect, useContext } from "react";
-import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
@@ -67,15 +66,11 @@ const Details = props => {
     ticket_availability
   } = eventContext.eventDetails;
 
-  if (eventContext.eventDetails) {
-    console.log(eventContext.eventDetails);
-  }
-
-  // const [loading, setLoading] = useState(false);
-  // const [event, setEventDetails] = useState([]);
-  // const [locationInfo, setLocationDetails] = useState([]);
-
   useEffect(() => {
+    // Lets call the context to get Data deets
+    eventContext.getEventDetails(props.match.params.id);
+    eventContext.getLocationDetails(props.match.params.id);
+
     // Needeed for Nav layout tings
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -96,8 +91,6 @@ const Details = props => {
         document.documentElement.classList.remove("perfect-scrollbar-on");
       }
     };
-    eventContext.getEventDetails(props.match.params.id);
-    // eventContext.getLocationDetails(props.match.params.id);
   }, []);
 
   const scrollAfterLoad = () => {
@@ -118,10 +111,6 @@ const Details = props => {
   const { venue } = eventContext.locationDetails;
   let date;
   let time;
-
-  console.log(eventContext.loading);
-  // if (eventContext.locationDetails.length !== 0)
-  //   console.log(eventContext.locationDetails);
 
   if (eventContext.loading)
     return (

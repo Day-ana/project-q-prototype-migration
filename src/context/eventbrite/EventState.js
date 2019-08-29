@@ -10,7 +10,6 @@ import {
   SET_LOCATION,
   SET_LOADING,
   CLEAR_EVENTS,
-  GET_DETAILS,
   SET_EVENT_DETAILS,
   SET_LOCATION_DETAILS
 } from "../types";
@@ -46,7 +45,8 @@ const EventState = props => {
   };
 
   const getEventDetails = async id => {
-    setLoading();
+    //if context coming from Details page, must be explicit for loading = true
+    setLoading(true);
     const resEventDetails = await axios.get(
       `https://www.eventbriteapi.com/v3/events/${id}/?expand=ticket_availability&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
     );
@@ -57,7 +57,7 @@ const EventState = props => {
   };
 
   const getLocationDetails = async id => {
-    setLoading();
+    setLoading(true);
     const resMapDetails = await axios.get(
       `https://www.eventbriteapi.com/v3/events/${id}/?expand=venue&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
     );

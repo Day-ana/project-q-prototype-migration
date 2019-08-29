@@ -5,9 +5,6 @@ import {
   SET_LOADING,
   SET_LOCATION,
   CLEAR_EVENTS,
-  GET_DETAILS,
-  SET_ALERT,
-  REMOVE_ALERT,
   SET_EVENT_DETAILS,
   SET_LOCATION_DETAILS
 } from "../types";
@@ -51,7 +48,7 @@ export default (state, action) => {
       return {
         ...state,
         eventDetails: action.payload,
-        loading: true
+        loading: false
       };
     case SET_LOCATION_DETAILS:
       return {
