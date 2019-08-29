@@ -1,59 +1,49 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-
-import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+import React, { useContext } from "react";
+import EventContext from "../../../context/eventbrite/eventContext";
+import AlertContext from "../../../context/alert/alertContext";
+import { Button, Input, Row, Col } from "reactstrap";
 
 // react plugin used to create switch buttons
 import Switch from "react-bootstrap-switch";
 
-const SearchEvents = props => {
-  //Set Default location/text for testing
-
-  //Single Source of truth FTW
-  const [location, setLocation] = useState(props.location);
-  const [within, setWithin] = useState(props.within);
-  const [keyword, setKeyword] = useState(props.keyword);
-  // const [loading, setLoading] = useState(null);
+const SearchEvents = () => {
+  const eventContext = useContext(EventContext);
+  const alertContext = useContext(AlertContext);
+  const { location, keyword, within } = eventContext;
 
   const onSubmit = e => {
     e.preventDefault();
     if (location === "") {
-      props.setAlert("Please enter a Location", "danger");
+      alertContext.setAlert("Please enter a Location", "danger");
     } else {
-      console.log(location, keyword, within);
-      props.searchEvents(location, keyword, within);
+      eventContext.searchEvents(location, keyword, within);
     }
   };
 
   const onSelectRange = e => {
     e.preventDefault();
     console.log(e.target.value);
-    setWithin(e.target.value);
+    eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
     console.log(e.target.value);
-    setKeyword(e.target.value);
+    eventContext.setKeyword(e.target.value);
   };
 
-  const clearEvents = e => {
+  const updateLocation = location => {
+    eventContext.setLocation(location);
+  };
+
+  const clearEvents = () => {
+    eventContext.clearEvents();
+  };
+
+  const onChange = e => {
     e.preventDefault();
-    props.clearEvents();
+    updateLocation(e.target.value);
   };
-
-  const onChange = e => setLocation(e.target.value);
 
   return (
     <div className="search">
@@ -122,12 +112,6 @@ const SearchEvents = props => {
       </form>
     </div>
   );
-};
-SearchEvents.propTypes = {
-  // clearEvents: PropTypes.func.isRequired,
-  // showClear: PropTypes.bool.isRequired,
-  // searchEvents: PropTypes.func.isRequired,
-  setAlert: PropTypes.func.isRequired
 };
 
 export default SearchEvents;
