@@ -47,6 +47,11 @@ import AlertContext from "context/alert/alertContext";
 const App = () => {
   const eventContext = useContext(EventContext);
   const { events, loading } = eventContext;
+  const alertContext = useContext(AlertContext);
+  const { alert } = alertContext;
+
+  // console.log(alertContext);
+  // console.log(alert);
 
   useEffect(() => {
     scrollAfterSearch();
@@ -79,12 +84,11 @@ const App = () => {
       <IndexNavbar />
       <div className="wrapper">
         <PageHeader />
-        {alert ? (
-          <Alert className="hovering-alert" color={alert.type}>
+        {alert && (
+          <Alert alert={alert} className="hovering-alert" color={alert.type}>
             {alert.msg}
           </Alert>
-        ) : null}
-
+        )}
         {loading ? (
           <Spinner />
         ) : (
