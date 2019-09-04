@@ -123,15 +123,16 @@ class ProfilePage extends React.Component {
                   </h1>
                   <h5 className="text-on-back">Q-101</h5>
                   <p className="profile-description">
-                    Our mission is aimed at being the web's largest portal of
-                    all things queer. Our mission is to cultivate, educate, and
+                    Queeery is aiming to be the web's largest portal of all
+                    things queer. Our mission is to cultivate, educate, and
                     bring the LGBTQ community together through the promotion of
                     events, gatherings, and meetups thoughout the queer
-                    collective. Queeery is a Web Application that works right in
-                    any browser of your choice. No need to download an app from
-                    the App store.
+                    collective. Queeery is a Web Application that works in any
+                    browser of your choice. No need to download an app from an
+                    App store. We hope you like this as much as we loved making
+                    it.
                   </p>
-                  <p>Follow our socials for the latest updates.</p>
+                  <p>For Queers by Queers.</p>
                   <div className="btn-wrapper profile pt-3">
                     <Button
                       className="btn-icon btn-round"

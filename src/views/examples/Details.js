@@ -201,10 +201,12 @@ const Details = props => {
                       </div>
                       <div className="description">
                         <p style={{ margin: "25px 7px" }}>
-                          Starting @{" "}
+                          Starting @ {console.log(ticket_availability)}
+                          {!ticket_availability}
+                          {/*                           
                           {ticket_availability
                             ? ticket_availability.minimum_ticket_price.display
-                            : "$0"}
+                            : "$0"} */}
                         </p>
                         <Button
                           color="danger"
