@@ -10,6 +10,15 @@
 .details-spinner {
   margin-top: 45%;
 }
+.q-header-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.q-main-logo {
+  width: 320px;
+  height: 320px;
+}
 
 .q-event-item {
   transition: background 200ms;
@@ -60,7 +69,7 @@
   width: 10em;
   height: 10em;
   border-width: 0.2em;
-  margin: -10% 43% 30%;
+  margin: 15% 43% 30%;
 }
 
 @-webkit-keyframes spinner-animation {
@@ -373,12 +382,28 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+  .img-fluid {
+    max-width: 80%;
   }
   .q-event-item {
     border: none;
     border-bottom: 1px solid rgba(255, 1, 151, 0.22);
     /* margin: 0 -31px 0; */
   }
+  .q-main-logo {
+    display: none;
+  }
+  .spinner.large {
+    margin: -25% 120px 90px;
+  }
+
+  .btn-info {
+    margin-right: 70px;
+  }
+
   .hovering-alert {
     top: 140px;
     left: 24%;

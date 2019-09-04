@@ -121,14 +121,17 @@ class ProfilePage extends React.Component {
                   <h1 className="profile-title text-left">
                     Queeery - Mission Statement
                   </h1>
-                  <h5 className="text-on-back">01</h5>
+                  <h5 className="text-on-back">Q-101</h5>
                   <p className="profile-description">
-                    Queeery is aiming to be the web's largest portal of all
-                    things queer. Our mission is to cultivate, educate, and
+                    Our mission is aimed at being the web's largest portal of
+                    all things queer. Our mission is to cultivate, educate, and
                     bring the LGBTQ community together through the promotion of
                     events, gatherings, and meetups thoughout the queer
-                    collective.
+                    collective. Queeery is a Web Application that works right in
+                    any browser of your choice. No need to download an app from
+                    the App store.
                   </p>
+                  <p>Follow our socials for the latest updates.</p>
                   <div className="btn-wrapper profile pt-3">
                     <Button
                       className="btn-icon btn-round"
@@ -140,7 +143,7 @@ class ProfilePage extends React.Component {
                       <i className="fab fa-twitter" />
                     </Button>
                     <UncontrolledTooltip delay={0} target="tooltip639225725">
-                      Follow us
+                      Twitter
                     </UncontrolledTooltip>
                     <Button
                       className="btn-icon btn-round"
@@ -152,7 +155,7 @@ class ProfilePage extends React.Component {
                       <i className="fab fa-facebook-square" />
                     </Button>
                     <UncontrolledTooltip delay={0} target="tooltip982846143">
-                      Like us
+                      Facebook
                     </UncontrolledTooltip>
                     <Button
                       className="btn-icon btn-round"
@@ -164,7 +167,7 @@ class ProfilePage extends React.Component {
                       <i className="fab fa-instagram" />
                     </Button>
                     <UncontrolledTooltip delay={0} target="tooltip951161185">
-                      Follow us
+                      Instagram
                     </UncontrolledTooltip>
                   </div>
                 </Col>
@@ -172,11 +175,11 @@ class ProfilePage extends React.Component {
                   <Card className="card-coin card-plain">
                     <CardHeader>
                       <img
-                        alt="..."
+                        alt="Queeery App"
                         className="img-center img-fluid rounded-circle"
-                        src={require("assets/img/mike.jpg")}
+                        src={require("assets/img/queeery-logo-main.png")}
                       />
-                      <h4 className="title">Transactions</h4>
+                      <h4 className="title">App Details</h4>
                     </CardHeader>
                     <CardBody>
                       <Nav
@@ -191,10 +194,10 @@ class ProfilePage extends React.Component {
                             onClick={e => this.toggleTabs(e, "tabs", 1)}
                             href="#pablo"
                           >
-                            Wallet
+                            Version
                           </NavLink>
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                           <NavLink
                             className={classnames({
                               active: this.state.tabs === 2
@@ -204,7 +207,7 @@ class ProfilePage extends React.Component {
                           >
                             Send
                           </NavLink>
-                        </NavItem>
+                        </NavItem> */}
                         <NavItem>
                           <NavLink
                             className={classnames({
@@ -225,31 +228,19 @@ class ProfilePage extends React.Component {
                           <Table className="tablesorter" responsive>
                             <thead className="text-primary">
                               <tr>
-                                <th className="header">COIN</th>
-                                <th className="header">AMOUNT</th>
-                                <th className="header">VALUE</th>
+                                <th className="header">App</th>
+                                <th className="header">Version</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td>BTC</td>
-                                <td>7.342</td>
-                                <td>48,870.75 USD</td>
-                              </tr>
-                              <tr>
-                                <td>ETH</td>
-                                <td>30.737</td>
-                                <td>64,53.30 USD</td>
-                              </tr>
-                              <tr>
-                                <td>XRP</td>
-                                <td>19.242</td>
-                                <td>18,354.96 USD</td>
+                                <td>Queeery</td>
+                                <td>0.10</td>
                               </tr>
                             </tbody>
                           </Table>
                         </TabPane>
-                        <TabPane tabId="tab2">
+                        {/* <TabPane tabId="tab2">
                           <Row>
                             <Label sm="3">Pay to</Label>
                             <Col sm="9">
@@ -279,23 +270,20 @@ class ProfilePage extends React.Component {
                           >
                             <i className="tim-icons icon-send" />
                           </Button>
-                        </TabPane>
+                        </TabPane> */}
                         <TabPane tabId="tab3">
                           <Table className="tablesorter" responsive>
                             <thead className="text-primary">
                               <tr>
-                                <th className="header">Latest Crypto News</th>
+                                <th className="header">Latest News</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td>The Daily: Nexo to Pay on Stable...</td>
+                                <td>Bae Day - Launch Day...</td>
                               </tr>
                               <tr>
-                                <td>Venezuela Begins Public of Nation...</td>
-                              </tr>
-                              <tr>
-                                <td>PR: BitCanna – Dutch Blockchain...</td>
+                                <td>Queery contact....</td>
                               </tr>
                             </tbody>
                           </Table>

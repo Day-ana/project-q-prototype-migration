@@ -103,6 +103,11 @@ class ComponentsNavbar extends React.Component {
               title="Designed and Coded by Creative Tim"
               tag={Link}
             >
+              {/* <img
+                alt="Queeery App"
+                className="img-fluid q-header-logo"
+                src={require("assets/img/queeery-logo-main.png")}
+              /> */}
               <span>Queeery </span>- A queer portal
             </NavbarBrand>
             <button
@@ -187,10 +192,10 @@ class ComponentsNavbar extends React.Component {
                   onClick={e => e.preventDefault()}
                 >
                   <i className="fa fa-cogs d-lg-none d-xl-none" />
-                  Getting started
+                  Queeery Mission
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-with-icons">
-                  <DropdownItem href="https://demos.creative-tim.com/blk-design-system-react/#/documentation/tutorial">
+                  {/* <DropdownItem href="https://demos.creative-tim.com/blk-design-system-react/#/documentation/tutorial">
                     <i className="tim-icons icon-paper" />
                     Documentation
                   </DropdownItem>
@@ -201,10 +206,10 @@ class ComponentsNavbar extends React.Component {
                   <DropdownItem tag={Link} to="/landing-page">
                     <i className="tim-icons icon-image-02" />
                     Landing Page
-                  </DropdownItem>
-                  <DropdownItem tag={Link} to="/profile-page">
-                    <i className="tim-icons icon-single-02" />
-                    Profile Page
+                  </DropdownItem> */}
+                  <DropdownItem tag={Link} to="/about">
+                    <i className="tim-icons icon-bullet-list-67" />
+                    ABOUT US
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

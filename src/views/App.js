@@ -69,7 +69,6 @@ const App = () => {
         .scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   };
-
   return (
     <>
       <IndexNavbar />
@@ -95,7 +94,7 @@ const App = () => {
             ) : (
               <Events id="events-container" />
             )}
-            <Navbars />
+            {/* <Navbars /> */}
             {/* {loading && <Spinner />} */}
             {/* <DetailsPage path=""></DetailsPage> */}
             {/* <NucleoIcons /> */}
