@@ -19,7 +19,7 @@ const EventState = props => {
     events: [],
     eventDetails: [],
     locationDetails: [],
-    location: "",
+    location: "Oakland",
     loading: false,
     keyword: "Queer",
     within: 100,

@@ -30,6 +30,7 @@ import RegisterPage from "views/examples/RegisterPage.jsx";
 import ProfilePage from "views/examples/ProfilePage.jsx";
 import DetailsPage from "views/examples/DetailsPage.js";
 import Details from "views/examples/Details.js";
+import NotFound from "views/examples/NotFound.js";
 import EventState from "context/eventbrite/EventState";
 import AlertState from "context/alert/AlertState";
 
@@ -55,6 +56,10 @@ ReactDOM.render(
           <Route
             path="/details-page/:id"
             render={props => <DetailsPage {...props} />}
+          />
+          <Route
+            path="/components/*"
+            render={props => <NotFound {...props} />}
           />
           <Redirect from="/" to="/components" />
         </Switch>

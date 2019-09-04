@@ -13,22 +13,24 @@ const SearchEvents = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+
     if (location === "") {
       alertContext.setAlert("Please enter a Location", "danger");
     } else {
       eventContext.searchEvents(location, keyword, within);
+      if (!eventContext.loading) {
+        scrollAfterSearch();
+      }
     }
   };
 
   const onSelectRange = e => {
     e.preventDefault();
-    console.log(e.target.value);
     eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
     eventContext.setKeyword(e.target.value);
   };
 
@@ -43,6 +45,14 @@ const SearchEvents = () => {
   const onChange = e => {
     e.preventDefault();
     updateLocation(e.target.value);
+  };
+
+  //Scroll to events section after a seach has been submitted
+  const scrollAfterSearch = () => {
+    document.getElementById("events-container").scrollIntoView({
+      behavior: "smooth",
+      alignToTop: true
+    });
   };
 
   return (

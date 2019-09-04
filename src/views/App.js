@@ -54,22 +54,13 @@ const App = () => {
   // console.log(alert);
 
   useEffect(() => {
-    scrollAfterSearch();
-
     //Needed for back button bug
     document.body.classList.remove("profile-page");
     document.body.classList.add("index-page");
     // Needeed for Nav layout tings
-  }, []);
 
-  //Scroll to events section after a seach has been submitted
-  const scrollAfterSearch = () => {
-    if (!loading) {
-      document
-        .getElementById("events-container")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  };
+    scrollAfterRewind();
+  }, []);
 
   const scrollAfterRewind = () => {
     if (!loading) {
