@@ -14,6 +14,17 @@ import {
   SET_LOCATION_DETAILS
 } from "../types";
 
+let eventClientId;
+let eventClientSecret;
+
+if (process.env.NODE_ENV !== "production") {
+  eventClientId = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
+  eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_SECRET;
+} else {
+  eventClientId = process.env.EVENTBRITE_CLIENT_ID;
+  eventClientSecret = process.env.EVENTBRITE_CLIENT_SECRET;
+}
+
 const EventState = props => {
   const initialState = {
     events: [],
@@ -22,7 +33,7 @@ const EventState = props => {
     location: "Oakland",
     loading: false,
     keyword: "Queer",
-    within: 100,
+    within: 25,
     alert: null
   };
 
@@ -36,7 +47,7 @@ const EventState = props => {
 
     console.log(location, keyword, within);
     const res = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${eventClientId}`
     );
     dispatch({
       type: SEARCH_EVENTS,
@@ -48,7 +59,7 @@ const EventState = props => {
     //if context coming from Details page, must be explicit for loading = true
     setLoading(true);
     const resEventDetails = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/${id}/?expand=ticket_availability&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+      `https://www.eventbriteapi.com/v3/events/${id}/?expand=ticket_availability&token=${eventClientId}`
     );
     dispatch({
       type: SET_EVENT_DETAILS,
@@ -59,7 +70,7 @@ const EventState = props => {
   const getLocationDetails = async id => {
     setLoading(true);
     const resMapDetails = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/${id}/?expand=venue&token=${process.env.REACT_APP_EVENTBRITE_CLIENT_ID}`
+      `https://www.eventbriteapi.com/v3/events/${id}/?expand=venue&token=${eventClientId}`
     );
     dispatch({
       type: SET_LOCATION_DETAILS,

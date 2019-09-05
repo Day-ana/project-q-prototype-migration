@@ -126,7 +126,7 @@ class ProfilePage extends React.Component {
                     Queeery is aiming to be the web's largest portal of all
                     things queer. Our mission is to cultivate, educate, and
                     bring the LGBTQ community together through the promotion of
-                    events, gatherings, and meetups thoughout the queer
+                    events, gatherings, and meetups throughout the queer
                     collective. Queeery is a Web Application that works in any
                     browser of your choice. No need to download an app from an
                     App store. We hope you like this as much as we loved making

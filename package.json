@@ -1,11 +1,11 @@
 {
-  "name": "blk-design-system-react",
-  "version": "1.0.0",
-  "description": "React version of BLK Design System by Creative Tim",
+  "name": "Queeery",
+  "version": "0.1.0",
+  "description": "Queeery Beta",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/blk-design-system-react.git"
+    "url": "git+https://github.com/Day-ana/project-q-prototype-migration.git"
   },
   "keywords": [
     "react",
@@ -28,9 +28,9 @@
   "author": "Creative Tim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/blk-design-system-react/issues"
+    "url": "https://github.com/Day-ana/project-q-prototype-migration/issues"
   },
-  "homepage": "https://github.com/creativetimofficial/blk-design-system-react#readme",
+  "homepage": "https://github.com/Day-ana/project-q-prototype-migration#readme",
   "dependencies": {
     "@types/google-map-react": "^0.23.12",
     "axios": "^0.19.0",
