@@ -93,13 +93,13 @@ const Details = props => {
     };
   }, []);
 
-  const scrollAfterLoad = () => {
-    if (eventContext.loading) {
-      document
-        .getElementById("details-container")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  };
+  // const scrollAfterLoad = () => {
+  //   if (eventContext.loading) {
+  //     document
+  //       .getElementById("details-container")
+  //       .scrollIntoView({ behavior: "smooth", block: "nearest" });
+  //   }
+  // };
 
   //   const date = new Date(start.local).toDateString();
   //   let time = new Date(start.local).toLocaleTimeString();
@@ -201,8 +201,8 @@ const Details = props => {
                       </div>
                       <div className="description">
                         <p style={{ margin: "25px 7px" }}>
-                          Starting @ {console.log(ticket_availability)}
-                          {!ticket_availability}
+                          {/* Starting @ {console.log(ticket_availability)} */}
+                          {/* {!ticket_availability} */}
                           {/*                           
                           {ticket_availability
                             ? ticket_availability.minimum_ticket_price.display

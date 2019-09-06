@@ -1,2 +1,16 @@
 [build]
     publish="build"
+
+    # Production context: all deploys from the Production branch set in your site's
+    # deploy contexts will inherit these settings.
+    [context.production]
+    publish = "build"
+    command = "make publish"
+    environment = { ACCESS_TOKEN = "super secret", NODE_VERSION = "8.0.1" }
+
+    # Branch Deploy context: all deploys that are not from a pull/merge request or
+    # from the Production branch will inherit these settings.
+    [context.branch-deploy]
+    command = "echo branch"
+    [context.branch-deploy.environment]
+    NODE_ENV = "development"
