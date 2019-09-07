@@ -31,6 +31,12 @@
 
   background: #d550d712;
 }
+
+.event-fixed-height {
+  height: 600px;
+  padding: 300px 0 100px;
+}
+
 .hovering-alert {
   position: absolute;
   padding: 0.9rem 1.25rem;

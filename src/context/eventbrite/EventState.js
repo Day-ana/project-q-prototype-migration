@@ -17,12 +17,14 @@ import {
 let eventClientId;
 let eventClientSecret;
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "production") {
+  console.log(process.env.NODE_ENV);
+  eventClientId = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
+  eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
+} else {
+  console.log(process.env.NODE_ENV);
   eventClientId = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
   eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_SECRET;
-} else {
-  eventClientId = process.env.EVENTBRITE_CLIENT_ID;
-  eventClientSecret = process.env.EVENTBRITE_CLIENT_SECRET;
 }
 
 const EventState = props => {

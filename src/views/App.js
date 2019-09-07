@@ -85,7 +85,7 @@ const App = () => {
           <div className="main">
             {!events.events ? (
               <Container>
-                <Row id="events-container">
+                <Row id="events-container" className="event-fixed-height">
                   <Col align="center">
                     <h2>Please enter a location....</h2>
                   </Col>
