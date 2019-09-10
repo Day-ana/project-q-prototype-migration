@@ -217,7 +217,7 @@ class ComponentsNavbar extends React.Component {
                 <Button
                   className="nav-link d-none d-lg-block"
                   color="default"
-                  href="https://www.google.com"
+                  href="https://cash.app/$Queeery"
                   rel="noopener noreferrer"
                   target="_blank"
                 >

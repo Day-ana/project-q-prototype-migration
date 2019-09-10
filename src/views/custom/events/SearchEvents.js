@@ -51,7 +51,8 @@ const SearchEvents = () => {
   const scrollAfterSearch = () => {
     document.getElementById("events-container").scrollIntoView({
       behavior: "smooth",
-      block: "nearest"
+      block: "nearest",
+      alignToTop: true
     });
   };
 

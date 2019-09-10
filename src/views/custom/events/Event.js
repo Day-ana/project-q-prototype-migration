@@ -6,9 +6,15 @@ import "assets/css/nucleo-icons.css";
 
 const Event = ({ event }) => {
   const { name, description, start, logo, id, url, is_free } = event;
+  let date;
+  let time;
+  // const date = new Date(start.local).toDateString();
+  // let time = new Date(start.local).toLocaleTimeString();
+  if (start) {
+    date = new Date(start.local).toDateString();
+    time = new Date(start.local).toLocaleTimeString();
+  }
 
-  const date = new Date(start.local).toDateString();
-  let time = new Date(start.local).toLocaleTimeString();
   // if length is 10 convert to american time zone
   // otherwise .toLocaleTimeString() will do for now
   if (time.length === 10) {
@@ -44,10 +50,9 @@ const Event = ({ event }) => {
         >
           {name.text}
         </h3>
-        <h3 color="Danger">{date.toString()}</h3>
-        <h4>{start.local}</h4>
+        <h3 color="Danger">{date}</h3>
         <h4>{time}</h4>
-        <h5>{id}</h5>
+        {/* <h5>{id}</h5> */}
       </Col>
 
       <Col>
