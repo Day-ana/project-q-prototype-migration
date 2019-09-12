@@ -60,7 +60,7 @@ const PageHeader = () => {
                 />
                 QUEEERY
               </h1>
-              <h4 className="d-none d-sm-block">
+              <h4 className="d-sm-block">
                 Searching for <span className="text-info">{keyword}&nbsp;</span>{" "}
                 events in
               </h4>

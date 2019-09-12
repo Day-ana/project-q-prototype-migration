@@ -8,6 +8,7 @@ import {
   SET_WITHIN,
   SET_KEYWORD,
   SET_LOCATION,
+  SET_FREE,
   SET_LOADING,
   CLEAR_EVENTS,
   SET_EVENT_DETAILS,
@@ -16,6 +17,7 @@ import {
 
 let eventClientId;
 let eventClientSecret;
+let res;
 
 if (process.env.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV);
@@ -36,21 +38,31 @@ const EventState = props => {
     loading: false,
     keyword: "Queer",
     within: 25,
+    isFree: null,
     alert: null
   };
 
   const [state, dispatch] = useReducer(EventReducer, initialState);
 
-  const searchEvents = async (location, keyword, within) => {
+  const searchEvents = async (location, keyword, within, isFree) => {
     setLoading();
     setWithin(within);
     setKeyword(keyword);
     setLocation(location);
+    // setFree(isFree);
 
-    console.log(location, keyword, within);
-    const res = await axios.get(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${eventClientId}`
-    );
+    console.log(location, keyword, within, isFree);
+
+    if (isFree !== null) {
+      res = await axios.get(
+        `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&price=free&token=${eventClientId}`
+      );
+    } else {
+      res = await axios.get(
+        `https://www.eventbriteapi.com/v3/events/search/?q=${keyword}&location.address=${location}&sort_by=date&location.within=${within}mi&token=${eventClientId}`
+      );
+    }
+
     dispatch({
       type: SEARCH_EVENTS,
       payload: res.data
@@ -83,6 +95,7 @@ const EventState = props => {
   const setLoading = () => dispatch({ type: SET_LOADING });
   const clearEvents = () => dispatch({ type: CLEAR_EVENTS });
   const setWithin = within => dispatch({ type: SET_WITHIN, payload: within });
+  const setFree = isFree => dispatch({ type: SET_FREE, payload: isFree });
   const setKeyword = keyword =>
     dispatch({ type: SET_KEYWORD, payload: keyword });
   const setLocation = event => dispatch({ type: SET_LOCATION, payload: event });
@@ -95,12 +108,14 @@ const EventState = props => {
         loading: state.loading,
         keyword: state.keyword,
         within: state.within,
+        isFree: state.isFree,
         eventDetails: state.eventDetails,
         locationDetails: state.locationDetails,
         alert: state.alert,
         searchEvents,
         setWithin,
         setKeyword,
+        setFree,
         setLocation,
         clearEvents,
         getEventDetails,

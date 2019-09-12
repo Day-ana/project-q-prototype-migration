@@ -64,9 +64,11 @@ const App = () => {
 
   const scrollAfterRewind = () => {
     if (!loading) {
-      document
-        .getElementById("root")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+      document.getElementById("root").scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        alignToTop: true
+      });
     }
   };
   return (
@@ -92,7 +94,7 @@ const App = () => {
                 </Row>
               </Container>
             ) : (
-              <Events id="events-container" />
+              <Events />
             )}
             {/* <Navbars /> */}
             {/* {loading && <Spinner />} */}

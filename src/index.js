@@ -24,7 +24,6 @@ import "assets/scss/blk-design-system-react.scss?v=1.0.0";
 import "assets/demo/demo.css";
 
 import App from "views/App.js";
-import Index from "views/Index.jsx";
 import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
 // import ProfilePage from "views/examples/ProfilePage.jsx";
@@ -40,7 +39,7 @@ ReactDOM.render(
     <AlertState>
       <BrowserRouter>
         <Switch>
-          <Route path="/components" render={props => <App {...props} />} />
+          <Route path="/home" render={props => <App {...props} />} />
           <Route
             path="/landing-page"
             render={props => <LandingPage {...props} />}
@@ -55,11 +54,8 @@ ReactDOM.render(
             path="/details-page/:id"
             render={props => <DetailsPage {...props} />}
           />
-          <Route
-            path="/components/*"
-            render={props => <NotFound {...props} />}
-          />
-          <Redirect from="/" to="/components" />
+          {/* <Route path="/home/*" render={props => <NotFound {...props} />} /> */}
+          <Redirect from="/" to="/home" />
         </Switch>
       </BrowserRouter>
     </AlertState>

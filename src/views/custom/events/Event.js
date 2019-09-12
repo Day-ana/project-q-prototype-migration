@@ -38,18 +38,7 @@ const Event = ({ event }) => {
         </small>{" "}
       </Col>
       <Col>
-        <h3
-          className="text-primary"
-          style={{
-            textOverflow: "ellipsis",
-            overflow: "hidden",
-            whiteSpace: "wrap",
-            width: "320px",
-            height: "120px"
-          }}
-        >
-          {name.text}
-        </h3>
+        <h3 className="text-primary q-event-details">{name.text}</h3>
         <h3 color="Danger">{date}</h3>
         <h4>{time}</h4>
         {/* <h5>{id}</h5> */}
@@ -61,24 +50,14 @@ const Event = ({ event }) => {
       <Col>
         <div className="typography-line" style={{ paddingLeft: "0" }}>
           <p>Description:</p>
-          <p
-            className="text-muted"
-            style={{
-              textOverflow: "ellipsis",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              maxWidth: "400px"
-            }}
-          >
-            {description.text}
-          </p>
+          <p className="text-muted q-event-description">{description.text}</p>
         </div>
         <div className="typography-line" />
       </Col>
       <Container>
         <Row>
-          <div className="w-100" />{" "}
-          <Col>
+          {/* <div className="w-100" />{" "} */}
+          {/* <Col>
             <Button
               color="danger"
               href={url}
@@ -87,7 +66,7 @@ const Event = ({ event }) => {
             >
               Tickets
             </Button>
-          </Col>{" "}
+          </Col>{" "} */}
           <Col>
             <Button color="info" tag={Link} to={`/details/${id}`}>
               More Info

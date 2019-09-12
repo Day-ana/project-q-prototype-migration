@@ -4,6 +4,7 @@ import {
   SET_KEYWORD,
   SET_LOADING,
   SET_LOCATION,
+  SET_FREE,
   CLEAR_EVENTS,
   SET_EVENT_DETAILS,
   SET_LOCATION_DETAILS
@@ -12,7 +13,6 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case CLEAR_EVENTS:
-      // console.log(action.type);
       return {
         ...state,
         events: [],
@@ -40,6 +40,11 @@ export default (state, action) => {
         location: action.payload
       };
     case SET_KEYWORD:
+      return {
+        ...state,
+        keyword: action.payload
+      };
+    case SET_FREE:
       return {
         ...state,
         keyword: action.payload
