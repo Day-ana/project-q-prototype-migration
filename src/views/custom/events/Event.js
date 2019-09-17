@@ -57,7 +57,7 @@ const Event = ({ event }) => {
       <Container>
         <Row>
           {/* <div className="w-100" />{" "} */}
-          {/* <Col>
+          <Col>
             <Button
               color="danger"
               href={url}
@@ -66,7 +66,7 @@ const Event = ({ event }) => {
             >
               Tickets
             </Button>
-          </Col>{" "} */}
+          </Col>{" "}
           <Col>
             <Button color="info" tag={Link} to={`/details/${id}`}>
               More Info
