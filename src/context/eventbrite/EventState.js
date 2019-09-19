@@ -16,17 +16,17 @@ import {
 } from "../types";
 
 let eventClientId;
-let eventClientSecret;
+// let eventClientSecret;
 let res;
 
 if (process.env.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV);
   eventClientId = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
-  eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
+  // eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
 } else {
   console.log(process.env.NODE_ENV);
   eventClientId = process.env.REACT_APP_EVENTBRITE_CLIENT_ID;
-  eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_SECRET;
+  // eventClientSecret = process.env.REACT_APP_EVENTBRITE_CLIENT_SECRET;
 }
 
 const EventState = props => {
@@ -36,7 +36,7 @@ const EventState = props => {
     locationDetails: [],
     location: "Oakland",
     loading: false,
-    keyword: "Queer",
+    keyword: "LGBT",
     within: 25,
     isFree: null,
     alert: null

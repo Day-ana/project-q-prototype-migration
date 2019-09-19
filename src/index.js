@@ -28,11 +28,10 @@ import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
 // import ProfilePage from "views/examples/ProfilePage.jsx";
 import AboutUs from "views/examples/AboutUs.js";
-import DetailsPage from "views/examples/DetailsPage.js";
 import Details from "views/examples/Details.js";
-import NotFound from "views/examples/NotFound.js";
 import EventState from "context/eventbrite/EventState";
 import AlertState from "context/alert/AlertState";
+// import NotFound from "views/examples/NotFound.js";
 
 ReactDOM.render(
   <EventState>
@@ -50,10 +49,6 @@ ReactDOM.render(
           />
           <Route path="/about" render={props => <AboutUs {...props} />} />
           <Route path="/details/:id" render={props => <Details {...props} />} />
-          <Route
-            path="/details-page/:id"
-            render={props => <DetailsPage {...props} />}
-          />
           {/* <Route path="/home/*" render={props => <NotFound {...props} />} /> */}
           <Redirect from="/" to="/home" />
         </Switch>

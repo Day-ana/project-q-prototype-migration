@@ -37,15 +37,15 @@ const SearchEvents = () => {
   const updateLocation = location => {
     eventContext.setLocation(location);
   };
+  const onChange = e => {
+    e.preventDefault();
+    updateLocation(e.target.value);
+  };
 
   const clearEvents = () => {
     eventContext.clearEvents();
   };
 
-  const onChange = e => {
-    e.preventDefault();
-    updateLocation(e.target.value);
-  };
   const onChangeFree = e => {
     // e.preventDefault();
     console.log(e.props.defaultValue);

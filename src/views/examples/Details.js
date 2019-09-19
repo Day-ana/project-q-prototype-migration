@@ -28,16 +28,10 @@ import {
   Container,
   Row,
   Col
-  //   UncontrolledTooltip,
-  //   UncontrolledCarousel
 } from "reactstrap";
 
-import axios from "axios";
 import Spinner from "../custom/layout/Spinner";
-// import SimpleMap from "../custom/events/SimpleMap";
-import SimpleMap from "../custom/events/Map";
-
-import { Link } from "react-router-dom";
+import QueeeryMap from "../custom/events/QueeeryMap";
 
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
@@ -159,7 +153,7 @@ const Details = props => {
                 <img
                   src={logo && logo.original.url}
                   className="img-center img-fluid"
-                  alt="Responsive image"
+                  alt="Responsive"
                 />
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
@@ -251,7 +245,7 @@ const Details = props => {
                   {description && description.text}
                 </p>
                 {venue ? (
-                  <SimpleMap venue={venue} url={mapsLink} />
+                  <QueeeryMap venue={venue} url={mapsLink} />
                 ) : (
                   "loading...."
                 )}
@@ -261,8 +255,9 @@ const Details = props => {
                     color="primary"
                     href="#dayana"
                     href={url}
+                    target="_BLANK"
                   >
-                    <i className="tim-icons icon-book-bookmark" /> Tickets
+                    <i className="tim-icons icon-book-bookmark" /> View Tickets
                   </Button>
                   <Button
                     className="btn-simple"
@@ -270,7 +265,7 @@ const Details = props => {
                     href={mapsLink}
                     target="_BLANK"
                   >
-                    <i className="tim-icons icon-map-big" /> See in Maps!
+                    <i className="tim-icons icon-map-big" /> View in Maps
                   </Button>
                 </div>
               </Col>

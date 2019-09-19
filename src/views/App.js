@@ -23,8 +23,8 @@ import PageHeader from "components/PageHeader/PageHeader.jsx";
 import Footer from "components/Footer/Footer.jsx";
 
 // sections for this page/view
-import Basics from "views/IndexSections/Basics.jsx";
-import Navbars from "views/IndexSections/Navbars.jsx";
+// import Basics from "views/IndexSections/Basics.jsx";
+// import Navbars from "views/IndexSections/Navbars.jsx";
 // import Tabs from "views/IndexSections/Tabs.jsx";
 // import Pagination from "views/IndexSections/Pagination.jsx";
 // import Notifications from "views/IndexSections/Notifications.jsx";
@@ -50,15 +50,11 @@ const App = () => {
   const alertContext = useContext(AlertContext);
   const { alert } = alertContext;
 
-  // console.log(alertContext);
-  // console.log(alert);
-
   useEffect(() => {
     //Needed for back button bug
     document.body.classList.remove("profile-page");
     document.body.classList.add("index-page");
     // Needeed for Nav layout tings
-
     scrollAfterRewind();
   }, []);
 

@@ -31,6 +31,7 @@ const Map = props => {
 
   useEffect(props => {
     console.log("useEffect");
+    getMapBounds();
     // setZoom(16);
     // setCenter([parseFloat(coord[0]), parseFloat(coord[1])]);
   });
@@ -48,28 +49,42 @@ const Map = props => {
     // setZoom(16);
   };
 
+  // Return map bounds based on list of places
+  const getMapBounds = (map, maps, places) => {
+    console.log("getMapBounds called....");
+    // const bounds = new maps.LatLngBounds();
+    // places.forEach(place => {
+    //   bounds.extend(
+    //     new maps.LatLng(
+    //       place.geometry.location.lat,
+    //       place.geometry.location.lng
+    //     )
+    //   );
+    // });
+    // return bounds;
+  };
+
   // Re-center map when resizing the window
-  // const bindResizeListener = (map, maps, bounds) => {
-  //   maps.event.addDomListenerOnce(map, "idle", () => {
-  //     maps.event.addDomListener(window, "resize", () => {
-  //       map.fitBounds(bounds);
-  //     });
-  //   });
-  // };
+  const bindResizeListener = (map, maps, bounds) => {
+    maps.event.addDomListenerOnce(map, "idle", () => {
+      maps.event.addDomListener(window, "resize", () => {
+        map.fitBounds(bounds);
+      });
+    });
+  };
 
   if (props.venue) {
     return (
       <div style={{ height: "30vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
-            key: "key"
+            key: "AIzaSyDq5vrP6BnIVV4cGG92bGCCU2tWD20FJZg"
           }}
           center={center}
           zoom={zoom}
           //Update the map coordinates after it loads
           yesIWantToUseGoogleMapApiInternals
           // onClick={handleApiLoaded}
-
           onGoogleApiLoaded={({ map }) =>
             handleApiLoaded(map, [props.venue.latitude, props.venue.longitude])
           }
