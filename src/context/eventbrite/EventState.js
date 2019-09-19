@@ -36,7 +36,7 @@ const EventState = props => {
     locationDetails: [],
     location: "Oakland",
     loading: false,
-    keyword: "LGBT",
+    keyword: "queer",
     within: 25,
     isFree: null,
     alert: null

@@ -15,7 +15,7 @@ const Map = props => {
   const handleApiLoaded = (map, maps, place) => {
     // console.log("handleApiLoaded");
     // use map and maps objects
-    setCenter([place[0], place[1]]);
+    setCenter(place);
   };
 
   if (props.venue) {

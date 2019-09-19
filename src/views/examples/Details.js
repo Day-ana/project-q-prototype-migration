@@ -183,15 +183,14 @@ const Details = props => {
                           {", "}
                           {venue && venue.address.region}
                         </p>
-                        {/* 
                         <Button
                           className="btn-simple"
                           color="info"
                           href={mapsLink}
                           target="_BLANK"
                         >
-                          <i className="tim-icons icon-map-big" /> See in Maps!
-                        </Button> */}
+                          <i className="tim-icons icon-map-big" /> View in Maps
+                        </Button>
                       </div>
                     </div>
                     <div className="info info-horizontal">
@@ -217,9 +216,9 @@ const Details = props => {
                         <i className="tim-icons icon-money-coins" />
                       </div>
                       <div className="description">
-                        <p className="q-details-info">
-                          {/* {price ? price : "n/a"} */}
-                        </p>
+                        <h4 className="q-details-info">
+                          $ {price ? price.major_value : "n/a"}
+                        </h4>
                         <Button
                           color="danger"
                           className="float-left"
