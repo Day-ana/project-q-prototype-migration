@@ -116,7 +116,7 @@ class Footer extends React.Component {
                   id="tooltip318450378"
                   target="_blank"
                 >
-                  <i className="fab fa-dribbble" />
+                  <i className="fab fa-instagram" />
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip318450378">
                   Follow us
