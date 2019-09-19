@@ -3,18 +3,9 @@ import Marker from "./Marker";
 import GoogleMap from "./GoogleMap";
 import "assets/css/nucleo-icons.css";
 
-// Return map bounds based on list of places
-// const getMapBounds = (map, maps, place) => {
-//   const bounds = new maps.LatLngBounds();
-
-//   bounds.extend(
-//     new maps.LatLng(place.geometry.location.lat, place.geometry.location.lng)
-//   );
-//   return bounds;
-// };
-
-const QueeeryMap = props => {
+const Map = props => {
   const [zoom] = useState(11);
+  // Default center NY
   const [center, setCenter] = useState([40.7535965, -73.98323260000001]);
 
   useEffect(props => {
@@ -44,7 +35,6 @@ const QueeeryMap = props => {
               }
             >
               <Marker
-                // key={place.id}
                 onClick={() => window.open(props.url, "_blank")}
                 lat={props.venue.latitude}
                 lng={props.venue.longitude}
@@ -57,4 +47,4 @@ const QueeeryMap = props => {
   }
 };
 
-export default QueeeryMap;
+export default Map;
