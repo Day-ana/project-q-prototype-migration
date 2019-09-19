@@ -9,40 +9,55 @@ import Switch from "react-bootstrap-switch";
 const SearchEvents = () => {
   const eventContext = useContext(EventContext);
   const alertContext = useContext(AlertContext);
-  const { location, keyword, within } = eventContext;
+  const { location, keyword, within, isFree } = eventContext;
 
   const onSubmit = e => {
     e.preventDefault();
+
     if (location === "") {
       alertContext.setAlert("Please enter a Location", "danger");
     } else {
-      eventContext.searchEvents(location, keyword, within);
+      eventContext.searchEvents(location, keyword, within, isFree);
+      if (!eventContext.loading) {
+        scrollAfterSearch();
+      }
     }
   };
 
   const onSelectRange = e => {
     e.preventDefault();
-    console.log(e.target.value);
     eventContext.setWithin(e.target.value);
   };
 
   const onSelectKeyword = e => {
     e.preventDefault();
-    console.log(e.target.value);
     eventContext.setKeyword(e.target.value);
   };
 
   const updateLocation = location => {
     eventContext.setLocation(location);
   };
+  const onChange = e => {
+    e.preventDefault();
+    updateLocation(e.target.value);
+  };
 
   const clearEvents = () => {
     eventContext.clearEvents();
   };
 
-  const onChange = e => {
-    e.preventDefault();
-    updateLocation(e.target.value);
+  const onChangeFree = e => {
+    // e.preventDefault();
+    console.log(e.props.defaultValue);
+    eventContext.setFree("free");
+  };
+
+  //Scroll to events section after a seach has been submitted
+  const scrollAfterSearch = () => {
+    document.getElementById("events-container").scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
   };
 
   return (
@@ -92,22 +107,22 @@ const SearchEvents = () => {
               Clear
             </button> */}
           </Col>
-          <Col className="col-sm">
+          <Col>-</Col>
+          {/* <Col className="col-sm">
             <p className="category">Is Free?</p>
             <Switch
-              defaultValue={false}
-              offColor=""
-              offText=""
-              onColor=""
-              onText=""
+              defaultValue={isFree}
+              onChange={onChangeFree}
+              checked={true}
+              offColor="success"
+              offText={<i className="nc-icon nc-simple-remove" />}
+              onColor="success"
+              onText={<i className="nc-icon nc-check-2" />}
             />
-            <br />
-            {/* {showClear && ( */}
-            {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
+              <button className="btn btn-light btn-block" onClick={clearEvents}>
               Clear
-            </button> */}
-            {/* )} */}
-          </Col>
+            </button> }
+          </Col> */}
         </Row>
       </form>
     </div>

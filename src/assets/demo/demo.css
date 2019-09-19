@@ -10,18 +10,48 @@
 .details-spinner {
   margin-top: 45%;
 }
+.q-header-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.q-main-logo {
+  width: 320px;
+  height: 320px;
+}
 
 .q-event-item {
   transition: background 200ms;
   border: 1px solid rgba(255, 1, 151, 0.22);
 }
 
+.q-event-description {
+  width: 400px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.q-event-details {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: wrap;
+  height: 120px;
+  width: 320px;
+}
 .q-event-item:hover {
   border-radius: 3px;
   border: 1px solid rgb(255, 1, 151, 0.5);
-
   background: #d550d712;
 }
+.q-details-info {
+  margin: 16px 0;
+}
+
+.event-fixed-height {
+  height: 600px;
+  padding: 300px 0 100px;
+}
+
 .hovering-alert {
   position: absolute;
   padding: 0.9rem 1.25rem;
@@ -60,7 +90,7 @@
   width: 10em;
   height: 10em;
   border-width: 0.2em;
-  margin: -10% 43% 30%;
+  margin: 15% 43% 30%;
 }
 
 @-webkit-keyframes spinner-animation {
@@ -369,19 +399,58 @@
     position: relative;
     margin-bottom: 100px;
   }
+
   .main-layout {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-gap: 0rem;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 1, 151, 0.22);
+  }
+  .img-fluid {
+    max-width: 80%;
   }
   .q-event-item {
     border: none;
     border-bottom: 1px solid rgba(255, 1, 151, 0.22);
-    /* margin: 0 -31px 0; */
+    width: 99%;
   }
+  .q-event-item:hover {
+    border-bottom: 1px solid rgb(255, 1, 151, 0.5);
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: #d550d712;
+  }
+  .q-event-description {
+    width: 320px;
+  }
+  .q-event-details {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: wrap;
+    height: 120px;
+    width: 320px;
+  }
+  .q-main-logo {
+    display: none;
+  }
+  .spinner.large {
+    margin: 100px 120px 300px;
+  }
+
+  .btn-info {
+    margin-right: 70px;
+  }
+
   .hovering-alert {
     top: 140px;
     left: 24%;
+  }
+  .row select {
+    color: #fff;
   }
 }
 

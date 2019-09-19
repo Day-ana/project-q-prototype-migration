@@ -6,9 +6,15 @@ import "assets/css/nucleo-icons.css";
 
 const Event = ({ event }) => {
   const { name, description, start, logo, id, url, is_free } = event;
+  let date;
+  let time;
+  // const date = new Date(start.local).toDateString();
+  // let time = new Date(start.local).toLocaleTimeString();
+  if (start) {
+    date = new Date(start.local).toDateString();
+    time = new Date(start.local).toLocaleTimeString();
+  }
 
-  const date = new Date(start.local).toDateString();
-  let time = new Date(start.local).toLocaleTimeString();
   // if length is 10 convert to american time zone
   // otherwise .toLocaleTimeString() will do for now
   if (time.length === 10) {
@@ -32,22 +38,10 @@ const Event = ({ event }) => {
         </small>{" "}
       </Col>
       <Col>
-        <h3
-          className="text-primary"
-          style={{
-            textOverflow: "ellipsis",
-            overflow: "hidden",
-            whiteSpace: "wrap",
-            width: "320px",
-            height: "120px"
-          }}
-        >
-          {name.text}
-        </h3>
-        <h3 color="Danger">{date.toString()}</h3>
-        <h4>{start.local}</h4>
+        <h3 className="text-primary q-event-details">{name.text}</h3>
+        <h3 color="Danger">{date}</h3>
         <h4>{time}</h4>
-        <h5>{id}</h5>
+        {/* <h5>{id}</h5> */}
       </Col>
 
       <Col>
@@ -56,23 +50,13 @@ const Event = ({ event }) => {
       <Col>
         <div className="typography-line" style={{ paddingLeft: "0" }}>
           <p>Description:</p>
-          <p
-            className="text-muted"
-            style={{
-              textOverflow: "ellipsis",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              maxWidth: "400px"
-            }}
-          >
-            {description.text}
-          </p>
+          <p className="text-muted q-event-description">{description.text}</p>
         </div>
         <div className="typography-line" />
       </Col>
       <Container>
         <Row>
-          <div className="w-100" />{" "}
+          {/* <div className="w-100" />{" "} */}
           <Col>
             <Button
               color="danger"

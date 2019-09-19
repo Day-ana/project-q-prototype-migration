@@ -24,21 +24,21 @@ import "assets/scss/blk-design-system-react.scss?v=1.0.0";
 import "assets/demo/demo.css";
 
 import App from "views/App.js";
-import Index from "views/Index.jsx";
 import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
-import ProfilePage from "views/examples/ProfilePage.jsx";
-import DetailsPage from "views/examples/DetailsPage.js";
+// import ProfilePage from "views/examples/ProfilePage.jsx";
+import AboutUs from "views/examples/AboutUs.js";
 import Details from "views/examples/Details.js";
 import EventState from "context/eventbrite/EventState";
 import AlertState from "context/alert/AlertState";
+// import NotFound from "views/examples/NotFound.js";
 
 ReactDOM.render(
   <EventState>
     <AlertState>
       <BrowserRouter>
         <Switch>
-          <Route path="/components" render={props => <App {...props} />} />
+          <Route path="/home" render={props => <App {...props} />} />
           <Route
             path="/landing-page"
             render={props => <LandingPage {...props} />}
@@ -47,16 +47,10 @@ ReactDOM.render(
             path="/register-page"
             render={props => <RegisterPage {...props} />}
           />
-          <Route
-            path="/profile-page"
-            render={props => <ProfilePage {...props} />}
-          />
+          <Route path="/about" render={props => <AboutUs {...props} />} />
           <Route path="/details/:id" render={props => <Details {...props} />} />
-          <Route
-            path="/details-page/:id"
-            render={props => <DetailsPage {...props} />}
-          />
-          <Redirect from="/" to="/components" />
+          {/* <Route path="/home/*" render={props => <NotFound {...props} />} /> */}
+          <Redirect from="/" to="/home" />
         </Switch>
       </BrowserRouter>
     </AlertState>

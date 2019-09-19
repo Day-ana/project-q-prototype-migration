@@ -25,27 +25,13 @@ import {
   Card,
   CardHeader,
   CardBody,
-  //   Label,
-  //   FormGroup,
-  //   Form,
-  //   Input,
-  //   FormText,
-  // NavItem,
-  // NavLink,
-  // Nav,
-  //   Table,
-  // TabContent,
-  // TabPane,
   Container,
   Row,
   Col
-  //   UncontrolledTooltip,
-  //   UncontrolledCarousel
 } from "reactstrap";
 
-import axios from "axios";
 import Spinner from "../custom/layout/Spinner";
-import SimpleMap from "../custom/events/SimpleMap";
+import QueeeryMap from "../custom/events/QueeeryMap";
 
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
@@ -93,25 +79,36 @@ const Details = props => {
     };
   }, []);
 
-  const scrollAfterLoad = () => {
-    if (eventContext.loading) {
-      document
-        .getElementById("details-container")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  };
-
   //   const date = new Date(start.local).toDateString();
   //   let time = new Date(start.local).toLocaleTimeString();
-  //   // if length is 10 convert to american time zone
-  //   // otherwise .toLocaleTimeString() will do for now
-  //   if (time.length === 10) {
-  //     time = time.slice(0, 4) + " " + time.slice(-2);
-  //   }
+  // if length is 10 convert to american time zone
+  // otherwise .toLocaleTimeString() will do for now
+
+  let price;
+  if (
+    ticket_availability &&
+    ticket_availability.maximum_ticket_price !== null
+  ) {
+    price = ticket_availability.maximum_ticket_price;
+  } else {
+    price = "N/A";
+  }
+  // console.log(price);
+
   const { venue } = eventContext.locationDetails;
+  let mapsLink;
   let date;
   let time;
-
+  if (venue) {
+    // console.log(venue);
+    mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      venue.address.address_1 +
+        " " +
+        venue.address.city +
+        " " +
+        venue.address.region
+    )}`;
+  }
   if (eventContext.loading)
     return (
       <Container className="align-items-center" id="details-container">
@@ -126,6 +123,11 @@ const Details = props => {
   if (start) {
     date = new Date(start.local).toDateString();
     time = new Date(start.local).toLocaleTimeString();
+    // if length is 10 convert to american time zone
+    // otherwise .toLocaleTimeString() will do for now
+    if (time.length === 10) {
+      time = time.slice(0, 4) + " " + time.slice(-2);
+    }
   }
 
   return (
@@ -151,7 +153,7 @@ const Details = props => {
                 <img
                   src={logo && logo.original.url}
                   className="img-center img-fluid"
-                  alt="Responsive image"
+                  alt="Responsive"
                 />
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
@@ -172,9 +174,23 @@ const Details = props => {
                       <div className="description">
                         <h3 className="info-title">Event Location:</h3>
                         <h4 className="info-title">{venue && venue.name}</h4>
+
+                        <p> {venue && venue.address.address_1} </p>
+                        <p> {venue && venue.address.address_2} </p>
                         <p>
-                          {venue && venue.address.localized_address_display}
+                          {" "}
+                          {venue && venue.address.city}
+                          {", "}
+                          {venue && venue.address.region}
                         </p>
+                        <Button
+                          className="btn-simple"
+                          color="info"
+                          href={mapsLink}
+                          target="_BLANK"
+                        >
+                          <i className="tim-icons icon-map-big" /> View in Maps
+                        </Button>
                       </div>
                     </div>
                     <div className="info info-horizontal">
@@ -182,8 +198,8 @@ const Details = props => {
                         <i className="tim-icons icon-calendar-60" />
                       </div>
                       <div className="description">
-                        <h4 style={{ margin: "25px 7px" }}>{date}</h4>
-                        <h4 style={{ margin: "25px 7px" }}>{time}</h4>
+                        <h4 className="q-details-info">{date}</h4>
+                        <h4 className="q-details-info">{time}</h4>
                         {/* <Button
                                 color="danger"
                                 className="float-left"
@@ -200,12 +216,9 @@ const Details = props => {
                         <i className="tim-icons icon-money-coins" />
                       </div>
                       <div className="description">
-                        <p style={{ margin: "25px 7px" }}>
-                          Starting @{" "}
-                          {ticket_availability
-                            ? ticket_availability.minimum_ticket_price.display
-                            : "$0"}
-                        </p>
+                        <h4 className="q-details-info">
+                          $ {price ? price.major_value : "n/a"}
+                        </h4>
                         <Button
                           color="danger"
                           className="float-left"
@@ -230,23 +243,28 @@ const Details = props => {
                 <p className="details-description text-left">
                   {description && description.text}
                 </p>
-                {/* <SimpleMap venue={venue} /> */}
+                {venue ? (
+                  <QueeeryMap venue={venue} url={mapsLink} />
+                ) : (
+                  "loading...."
+                )}
                 <div className="btn-wrapper pt-3">
                   <Button
                     className="btn-simple"
                     color="primary"
                     href="#dayana"
-                    onClick={e => e.preventDefault()}
+                    href={url}
+                    target="_BLANK"
                   >
-                    <i className="tim-icons icon-book-bookmark" /> Bookmark
+                    <i className="tim-icons icon-book-bookmark" /> View Tickets
                   </Button>
                   <Button
                     className="btn-simple"
                     color="info"
-                    href="#dayana"
-                    onClick={e => e.preventDefault()}
+                    href={mapsLink}
+                    target="_BLANK"
                   >
-                    <i className="tim-icons icon-bulb-63" /> Check it!
+                    <i className="tim-icons icon-map-big" /> View in Maps
                   </Button>
                 </div>
               </Col>

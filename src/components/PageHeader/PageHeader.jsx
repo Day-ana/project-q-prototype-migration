@@ -51,8 +51,16 @@ const PageHeader = () => {
         <div className="content-center brand">
           <Row>
             <Col>
-              <h1 className="h1-seo">Queeery</h1>
-              <h4 className="d-none d-sm-block">
+              <h1 className="h1-seo">
+                {" "}
+                <img
+                  alt="Queeery App"
+                  className="img-fluid q-main-logo"
+                  src={require("assets/img/queeery-logo-main.png")}
+                />
+                QUEEERY
+              </h1>
+              <h4 className="d-sm-block">
                 Searching for <span className="text-info">{keyword}&nbsp;</span>{" "}
                 events in
               </h4>

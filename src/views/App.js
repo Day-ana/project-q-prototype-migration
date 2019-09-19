@@ -23,8 +23,8 @@ import PageHeader from "components/PageHeader/PageHeader.jsx";
 import Footer from "components/Footer/Footer.jsx";
 
 // sections for this page/view
-import Basics from "views/IndexSections/Basics.jsx";
-import Navbars from "views/IndexSections/Navbars.jsx";
+// import Basics from "views/IndexSections/Basics.jsx";
+// import Navbars from "views/IndexSections/Navbars.jsx";
 // import Tabs from "views/IndexSections/Tabs.jsx";
 // import Pagination from "views/IndexSections/Pagination.jsx";
 // import Notifications from "views/IndexSections/Notifications.jsx";
@@ -47,60 +47,52 @@ import AlertContext from "context/alert/alertContext";
 const App = () => {
   const eventContext = useContext(EventContext);
   const { events, loading } = eventContext;
+  const alertContext = useContext(AlertContext);
+  const { alert } = alertContext;
 
   useEffect(() => {
-    scrollAfterSearch();
-
     //Needed for back button bug
     document.body.classList.remove("profile-page");
     document.body.classList.add("index-page");
     // Needeed for Nav layout tings
+    scrollAfterRewind();
   }, []);
-
-  //Scroll to events section after a seach has been submitted
-  const scrollAfterSearch = () => {
-    if (!loading) {
-      document
-        .getElementById("events-container")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  };
 
   const scrollAfterRewind = () => {
     if (!loading) {
-      document
-        .getElementById("root")
-        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+      document.getElementById("root").scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        alignToTop: true
+      });
     }
   };
-
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
         <PageHeader />
-        {alert ? (
-          <Alert className="hovering-alert" color={alert.type}>
+        {alert && (
+          <Alert alert={alert} className="hovering-alert" color={alert.type}>
             {alert.msg}
           </Alert>
-        ) : null}
-
+        )}
         {loading ? (
           <Spinner />
         ) : (
           <div className="main">
             {!events.events ? (
               <Container>
-                <Row id="events-container">
+                <Row id="events-container" className="event-fixed-height">
                   <Col align="center">
                     <h2>Please enter a location....</h2>
                   </Col>
                 </Row>
               </Container>
             ) : (
-              <Events id="events-container" />
+              <Events />
             )}
-            <Navbars />
+            {/* <Navbars /> */}
             {/* {loading && <Spinner />} */}
             {/* <DetailsPage path=""></DetailsPage> */}
             {/* <NucleoIcons /> */}

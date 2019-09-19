@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Event from "./Event";
-import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { Container } from "reactstrap";
 import EventContext from "../../../context/eventbrite/eventContext";
 const Events = () => {
   const eventContext = useContext(EventContext);

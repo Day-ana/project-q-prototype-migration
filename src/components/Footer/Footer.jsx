@@ -41,11 +41,9 @@ class Footer extends React.Component {
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink to="/" tag={Link}>
-                    Home
-                  </NavLink>
+                  Made with <span role="img">❤️</span> in the East Bay
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink to="/landing-page" tag={Link}>
                     Landing
                   </NavLink>
@@ -59,20 +57,29 @@ class Footer extends React.Component {
                   <NavLink to="/profile-page" tag={Link}>
                     Profile
                   </NavLink>
-                </NavItem>
+                </NavItem> */}
               </Nav>
             </Col>
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink href="s">Contact Us</NavLink>
+                  <NavLink to="/" tag={Link}>
+                    Home
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="https://queeery.com">About Us</NavLink>
+                  <NavLink to="/about" tag={Link}>
+                    About Us
+                  </NavLink>
                 </NavItem>
                 <NavItem>
+                  <NavLink href="mailto:queeeryhq@gmail.com">
+                    Contact Us
+                  </NavLink>
+                </NavItem>
+                {/* <NavItem>
                   <NavLink href="https://queeery.com">Blog</NavLink>
-                </NavItem>
+                </NavItem> */}
               </Nav>
             </Col>
             <Col md="3">
@@ -109,7 +116,7 @@ class Footer extends React.Component {
                   id="tooltip318450378"
                   target="_blank"
                 >
-                  <i className="fab fa-dribbble" />
+                  <i className="fab fa-instagram" />
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip318450378">
                   Follow us
