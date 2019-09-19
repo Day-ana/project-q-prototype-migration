@@ -38,7 +38,7 @@ ReactDOM.render(
     <AlertState>
       <BrowserRouter>
         <Switch>
-          <Route path="/home" render={props => <App {...props} />} />
+          <Route exact path="/" render={props => <App {...props} />} />
           <Route
             path="/landing-page"
             render={props => <LandingPage {...props} />}
@@ -50,7 +50,7 @@ ReactDOM.render(
           <Route path="/about" render={props => <AboutUs {...props} />} />
           <Route path="/details/:id" render={props => <Details {...props} />} />
           {/* <Route path="/home/*" render={props => <NotFound {...props} />} /> */}
-          <Redirect from="/" to="/home" />
+          <Redirect from="/" to="/" />
         </Switch>
       </BrowserRouter>
     </AlertState>
