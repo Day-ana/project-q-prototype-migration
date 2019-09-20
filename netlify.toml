@@ -2,6 +2,11 @@
     publish="build"
 
 [context.production.environment]
-  TOML_ENV_VAR = "From netlify.toml"
-  REACT_APP_TOML_ENV_VAR = "From netlify.toml (REACT_APP_)"
   REACT_APP_EVENTBRITE_CLIENT_ID = ""
+
+  # The following redirect is intended for use with most SPAs that handle
+  # routing internally.
+  [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
