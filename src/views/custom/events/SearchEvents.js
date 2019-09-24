@@ -45,6 +45,11 @@ const SearchEvents = () => {
   const clearEvents = () => {
     eventContext.clearEvents();
   };
+  const clearSearch = e => {
+    //Clear Search value if user clicks on search Input
+    e.preventDefault();
+    e.target.value = "";
+  };
 
   const onChangeFree = e => {
     // e.preventDefault();
@@ -71,6 +76,7 @@ const SearchEvents = () => {
               placeholder="Enter a location..."
               value={location}
               onChange={onChange}
+              onClick={clearSearch}
             />
             {/* <Input
             type="submit"
