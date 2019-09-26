@@ -22,7 +22,7 @@
   margin-bottom: 10px;
 }
 .queeery-btn {
-  margin-top: 20px;
+  margin-top: 0;
 }
 .size-up {
   font-size: rem 1.2;
@@ -442,6 +442,10 @@
   .img-fluid {
     max-width: 100%;
   }
+
+  .queeery-btn {
+    margin-top: 20px;
+  }
   .q-event-item {
     border: none;
     border-bottom: 1px solid rgba(255, 1, 151, 0.22);
@@ -451,6 +455,12 @@
     left: 60px;
     font-size: 1.33rem;
     line-height: 1.25;
+  }
+  .profile-page .profile-description {
+    margin-top: -30px;
+    max-width: 450px;
+    font-size: 0.875rem;
+    line-height: 26px;
   }
 
   .q-event-item:hover {

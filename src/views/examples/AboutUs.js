@@ -77,7 +77,8 @@ class ProfilePage extends React.Component {
         ps = new PerfectScrollbar(tables[i]);
       }
     }
-    document.body.classList.toggle("profile-page");
+    document.body.classList.remove("index-page");
+    document.body.classList.add("profile-page");
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -124,9 +125,8 @@ class ProfilePage extends React.Component {
                     collective. Queeery is a Web Application that works in any
                     browser of your choice. No need to download an app from an
                     App store. We hope you like this as much as we loved making
-                    it.
+                    it. For Queers by Queers.
                   </p>
-                  <p>For Queers by Queers.</p>
                   <div className="btn-wrapper profile pt-3">
                     <Button
                       className="btn-icon btn-round"
@@ -192,17 +192,6 @@ class ProfilePage extends React.Component {
                             Version
                           </NavLink>
                         </NavItem>
-                        {/* <NavItem>
-                          <NavLink
-                            className={classnames({
-                              active: this.state.tabs === 2
-                            })}
-                            onClick={e => this.toggleTabs(e, "tabs", 2)}
-                            href="#pablo"
-                          >
-                            Send
-                          </NavLink>
-                        </NavItem> */}
                         <NavItem>
                           <NavLink
                             className={classnames({
@@ -230,42 +219,11 @@ class ProfilePage extends React.Component {
                             <tbody>
                               <tr>
                                 <td>Queeery</td>
-                                <td>0.10</td>
+                                <td>0.1.1</td>
                               </tr>
                             </tbody>
                           </Table>
                         </TabPane>
-                        {/* <TabPane tabId="tab2">
-                          <Row>
-                            <Label sm="3">Pay to</Label>
-                            <Col sm="9">
-                              <FormGroup>
-                                <Input
-                                  placeholder="e.g. 1Nasd92348hU984353hfid"
-                                  type="text"
-                                />
-                                <FormText color="default" tag="span">
-                                  Please enter a valid address.
-                                </FormText>
-                              </FormGroup>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Label sm="3">Amount</Label>
-                            <Col sm="9">
-                              <FormGroup>
-                                <Input placeholder="1.587" type="text" />
-                              </FormGroup>
-                            </Col>
-                          </Row>
-                          <Button
-                            className="btn-simple btn-icon btn-round float-right"
-                            color="primary"
-                            type="submit"
-                          >
-                            <i className="tim-icons icon-send" />
-                          </Button>
-                        </TabPane> */}
                         <TabPane tabId="tab3">
                           <Table className="tablesorter" responsive>
                             <thead className="text-primary">
@@ -290,147 +248,6 @@ class ProfilePage extends React.Component {
               </Row>
             </Container>
           </div>
-          {/* <div className="section">
-            <Container>
-              <Row className="justify-content-between">
-                <Col md="6">
-                  <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={carouselItems} />
-                  </Row>
-                </Col>
-                <Col md="5">
-                  <h1 className="profile-title text-left">Projects</h1>
-                  <h5 className="text-on-back">02</h5>
-                  <p className="profile-description text-left">
-                    An artist of considerable range, Ryan — the name taken by
-                    Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                    performs and records all of his own music, giving it a warm,
-                    intimate feel with a solid groove structure. An artist of
-                    considerable range.
-                  </p>
-                  <div className="btn-wrapper pt-3">
-                    <Button
-                      className="btn-simple"
-                      color="primary"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                    >
-                      <i className="tim-icons icon-book-bookmark" /> Bookmark
-                    </Button>
-                    <Button
-                      className="btn-simple"
-                      color="info"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                    >
-                      <i className="tim-icons icon-bulb-63" /> Check it!
-                    </Button>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </div> */}
-          <section className="section">
-            {/* <Container>
-              <Row>
-                <Col md="6">
-                  <Card className="card-plain">
-                    <CardHeader>
-                      <h1 className="profile-title text-left">Contact</h1>
-                      <h5 className="text-on-back">03</h5>
-                    </CardHeader>
-                    <CardBody>
-                      <Form>
-                        <Row>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Your Name</label>
-                              <Input defaultValue="Mike" type="text" />
-                            </FormGroup>
-                          </Col>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Email address</label>
-                              <Input
-                                placeholder="mike@email.com"
-                                type="email"
-                              />
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Phone</label>
-                              <Input defaultValue="001-12321345" type="text" />
-                            </FormGroup>
-                          </Col>
-                          <Col md="6">
-                            <FormGroup>
-                              <label>Company</label>
-                              <Input defaultValue="CreativeTim" type="text" />
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col md="12">
-                            <FormGroup>
-                              <label>Message</label>
-                              <Input placeholder="Hello there!" type="text" />
-                            </FormGroup>
-                          </Col>
-                        </Row>
-                        <Button
-                          className="btn-round float-right"
-                          color="primary"
-                          data-placement="right"
-                          id="tooltip341148792"
-                          type="button"
-                        >
-                          Send text
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          placement="right"
-                          target="tooltip341148792"
-                        >
-                          Can't wait for your message
-                        </UncontrolledTooltip>
-                      </Form>
-                    </CardBody>
-                  </Card>
-                </Col>
-                <Col className="ml-auto" md="4">
-                  <div className="info info-horizontal">
-                    <div className="icon icon-primary">
-                      <i className="tim-icons icon-square-pin" />
-                    </div>
-                    <div className="description">
-                      <h4 className="info-title">Find us at the office</h4>
-                      <p>
-                        Bld Mihail Kogalniceanu, nr. 8, <br />
-                        7652 Bucharest, <br />
-                        Romania
-                      </p>
-                    </div>
-                  </div>
-                  <div className="info info-horizontal">
-                    <div className="icon icon-primary">
-                      <i className="tim-icons icon-mobile" />
-                    </div>
-                    <div className="description">
-                      <h4 className="info-title">Give us a ring</h4>
-                      <p>
-                        Michael Jordan <br />
-                        +40 762 321 762 <br />
-                        Mon - Fri, 8:00-22:00
-                      </p>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </Container> */}
-          </section>
           <Footer />
         </div>
       </>

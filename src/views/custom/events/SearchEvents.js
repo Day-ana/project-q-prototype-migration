@@ -97,7 +97,7 @@ const SearchEvents = () => {
         </Row>
         <Row>
           <Col className="col-sm">
-            <p className="category">Within miles:</p>
+            <p className="category">Radius:</p>
             <select onChange={onSelectRange} value={within}>
               <option value="5">5</option>
               <option value="10">10</option>
