@@ -77,6 +77,11 @@ class Footer extends React.Component {
                     Contact Us
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink href="https://cash.app/$Queeery">
+                    Donate @ $Queeery
+                  </NavLink>
+                </NavItem>
                 {/* <NavItem>
                   <NavLink href="https://queeery.com">Blog</NavLink>
                 </NavItem> */}

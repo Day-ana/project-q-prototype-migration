@@ -117,7 +117,7 @@ class PagesNavbar extends React.Component {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    BLK•React
+                    Queeery•
                   </a>
                 </Col>
                 <Col className="collapse-close text-right" xs="6">
@@ -176,6 +176,11 @@ class PagesNavbar extends React.Component {
               <NavItem>
                 <NavLink href="mailto:queeeryhq@gmail.com">Contact US</NavLink>
               </NavItem>
+              {/* <NavItem>
+                <NavLink href="https://cash.app/$Queeery">
+                  Donate- Cash.app $Queeery
+                </NavLink>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>

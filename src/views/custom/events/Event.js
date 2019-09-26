@@ -33,41 +33,44 @@ const Event = ({ event }) => {
     <Col className="q-event-item">
       <Col>
         <div className="space-20" />
-        <small className="d-block primary text-uppercase font-weight-bold mb-4">
+        <small className="d-block primary text-uppercase font-weight-bold mb-4 size-up">
           Q
         </small>{" "}
       </Col>
       <Col>
         <h3 className="text-primary q-event-details">{name.text}</h3>
-        <h3 color="Danger">{date}</h3>
+        <h3 color="Danger" className="date-title">
+          {date}
+        </h3>
         <h4>{time}</h4>
-        {/* <h5>{id}</h5> */}
       </Col>
 
       <Col>
-        <img alt="..." className="img-fluid rounded shadow-lg" src={imgUrl} />
+        <img
+          alt={name.text}
+          className="img-fluid rounded shadow-lg"
+          src={imgUrl}
+        />
       </Col>
       <Col>
-        <div className="typography-line" style={{ paddingLeft: "0" }}>
+        <div className="typography-line">
           <p>Description:</p>
           <p className="text-muted q-event-description">{description.text}</p>
         </div>
-        <div className="typography-line" />
       </Col>
       <Container>
         <Row>
           {/* <div className="w-100" />{" "} */}
           <Col>
-            <Button
+            {/* <Button
               color="danger"
               href={url}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Tickets
-            </Button>
-          </Col>{" "}
-          <Col>
+              &nbsp; &nbsp;Tickets&nbsp; &nbsp;
+            </Button> */}
+
             <Button color="info" tag={Link} to={`/details/${id}`}>
               More Info
             </Button>

@@ -5,7 +5,7 @@ const About = () => {
     <Fragment>
       <h1>About Queeery</h1>
       <p>Queer event, meetup, venue finder</p>
-      <p>Version 0.1.0</p>
+      <p>Version 0.1.1</p>
     </Fragment>
   );
 };

@@ -85,7 +85,12 @@ const SearchEvents = () => {
           /> */}
           </Col>
           <Col sm="4">
-            <Button color="primary" value="search" type="submit">
+            <Button
+              color="primary"
+              value="search"
+              type="submit"
+              className="queeery-btn"
+            >
               Queeery
             </Button>
           </Col>
@@ -105,9 +110,11 @@ const SearchEvents = () => {
             <p className="category">Keyword:</p>
             <select onChange={onSelectKeyword} value={keyword}>
               <option value="queer">Queer</option>
-              <option value="lesbian">Lesbian</option>
               <option value="lgbt">LGBT</option>
-              <option value="gay">gay</option>
+              <option value="lesbian">Lesbian</option>
+              <option value="gay">Gay</option>
+              <option value="bisexual">Bisexual</option>
+              <option value="trans">Trans</option>
             </select>
             {/* <button className="btn btn-light btn-block" onClick={clearEvents}>
               Clear
