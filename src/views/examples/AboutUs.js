@@ -219,7 +219,7 @@ class ProfilePage extends React.Component {
                             <tbody>
                               <tr>
                                 <td>Queeery</td>
-                                <td>0.1.1</td>
+                                <td>0.1.2</td>
                               </tr>
                             </tbody>
                           </Table>
