@@ -39,6 +39,9 @@
   border-top: 1px solid rgb(255, 1, 151, 0.5);
   background: #d550d712;
 }
+.promotion {
+  background: #d550d738;
+}
 
 .q-event-description {
   width: 240px;
